@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Air Pods Max</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Brawler:wght@400;700&family=Croissant+One&family=Ephesis&family=Gloock&family=Hurricane&family=Imbue:opsz,wght@10..100,100..900&family=Modak&family=Montez&family=Prosto+One&family=Rye&family=Shojumaru&family=Young+Serif&family=ZCOOL+XiaoWei&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      a {
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+      }
+      
+      img {
+        width: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+        padding: 3rem;
+        display: flex;
+        color: var(--text-color);
+        font-family: "Platypi", serif;
+      }
+      
+      .page {
+        position: relative;
+        width: 100%;
+        max-width: 100rem;
+        margin: auto;
+        border-radius: 24px;
+        box-shadow: 
+          3px 3px 6px #0005, 
+          0px 0px 6px #0002;
+      }
+
+      header {
+        width: 94%;
+        margin: auto;
+        padding: 2rem 0;
+        display: flex;
+        column-gap: 6rem;
+        row-gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .logo {
+        flex-shrink: 0;
+      }
+
+      .menu ul {
+        display: flex;
+        column-gap: 4.5rem;
+        row-gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+        color: #777777;
+        font-size: 1.9rem;
+        line-height: normal;
+      }
+        
+      .hero-section {
+        position: relative;
+        width: 94%;
+        margin: auto;
+        padding: 1rem;
+      }
+
+      .title-text {
+        min-width: min-content;
+        color: transparent;
+        font-size: calc(3rem + 10vw);
+        text-align: center;
+        font-family: "Arizonia", cursive;
+        background-clip: text;
+        -webkit-background-clip: text;
+        filter: drop-shadow(1px 1px 1px #000);
+        pointer-events: none;
+      }
+        
+      .hero-img-container {
+        position: relative;
+        padding-bottom: 4rem;
+      }
+      #relative {
+        position: relative;
+      }
+      .hero-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        max-width: 43.75rem;
+        display: block;
+        margin: auto;
+        transition: opacity 1s ease-out;
+        transition-delay: -500ms;
+        opacity: 0;
+      }
+
+      body.black {
+        background-image: 
+          linear-gradient(
+            -24deg, #000, #fff, #fff);
+        background-image: 
+          linear-gradient(
+            -24deg, #000, #0002);
+      }
+      body.black .black {
+        transition-delay: 400ms;
+        opacity: 1;
+        z-index: 1;
+      }
+      body.black .title-text {
+        background-image: 
+          linear-gradient(
+            45deg, #000, #fff, #000);
+      }
+      body.black .menu ul {
+        color: #fff;
+      }
+      body.black .menu img {
+        filter: brightness(0) invert(1);
+      }
+      body.black .add-to-cart {
+        background-color: #1e1d20;
+      }
+      body.green {
+        background-image: 
+          linear-gradient(
+            -24deg, #545c4e, #fff, #fff);
+        background-image: 
+          linear-gradient(
+            -24deg, #545c4e, #fff);
+      }
+      body.green .green {
+        transition-delay: 400ms;
+        opacity: 1;
+        z-index: 1;
+      }
+      body.green .title-text {
+        background-image: 
+          linear-gradient(
+            45deg, #7e8c79, #fff, #7e8c79);
+      }
+      body.green .add-to-cart {
+        background-color: #485145;
+      }
+      body.red .red {
+        transition-delay: 400ms;
+        opacity: 1;
+        z-index: 1;
+      }
+      body.red {
+        background-image: 
+          linear-gradient(
+            -24deg, #de4e47, #fff, #fff);
+        background-image: 
+          linear-gradient(
+            -24deg, #de4e47, #fff);
+      }
+      body.red .title-text {
+        background-image: 
+          linear-gradient(
+            45deg, #de4e47, #fff, #de4e47);
+      }
+      body.red .add-to-cart {
+        background-color: #de4e47;
+      }
+      body.blue {
+        background-image: 
+          linear-gradient(
+            -24deg, #2e4d68, #fff, #fff);
+        background-image: 
+          linear-gradient(
+            -24deg, #2e4d68, #fff);
+      }
+      body.blue .blue {
+        transition-delay: 400ms;
+        opacity: 1;
+        z-index: 1;
+      }
+      body.blue .title-text {
+        background-image: 
+          linear-gradient(
+            45deg, #2e4d68, #fff, #2e4d68);
+      }
+      body.blue .add-to-cart {
+        background-color: #2e4c67;
+      }
+
+      .dots {
+        position: absolute;
+        left: 1rem;
+        bottom: 0;
+        height: 50%;
+        text-align: center;
+      }
+        
+      .dot {
+        display: block;
+        width: 2rem;
+        height: 2rem;
+        margin: 1rem;
+        border-radius: 50%;
+        border: 0px solid transparent;
+        outline: 2px solid transparent;
+        background-color: currentColor;
+        box-shadow: inset 1px 1px 1px #0008, 
+                  inset -1px -1px 1px #fff6;
+        transition: outline-color 400ms;
+        cursor: pointer;
+      }
+      .dot:hover {
+        outline-color: #fff;
+        outline-color: currentColor;
+      }
+      .dot.black {
+        color: #1e1d20;
+      }
+      .dot.green {
+        color: #485145;
+      }
+      .dot.red {
+        color: #de4e47;
+      }
+      .dot.blue {
+        color: #2e4c67;
+      }
+
+      footer {
+        width: 94%;
+        margin: auto;
+        padding: 2.5rem 0;
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        z-index: 1;
+      }
+
+      .airpod-details ul {
+        display: flex;
+        column-gap: 4.5rem;
+        row-gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .airpod-details ul li {
+        margin: auto;
+      }
+      .airpod-details ul a {
+        color: #f1f1f1;
+        font-size: 30px;
+      }
+
+      .add-to-cart {
+        padding: 0.52em 1.5em 0.75em;
+        color: #fff;
+        font-size: min(1.2rem + 2vw, 2.2rem);
+        font-family: inherit;
+        border: none;
+        border-radius: 2em;
+        box-shadow: 3px 3px 6px #0005, 
+                  -3px -3px 6px #fff2;
+        transition: all 400ms ease-out;
+        cursor: pointer;
+      }
+
+      @media (max-width: 100rem) {
+        body {
+          padding: 0;
+        }
+        .page {
+          width: auto;
+          min-height: 100vh;
+          border-radius: 0;
+          box-shadow: none;
+        }
+        .hero-section {
+          width: 100%;
+        }
+        .hero-text {
+          width: 94%;
+          margin: 3rem auto 5rem;
+          text-align: center;
+        }
+      }
+
+      @media screen and (min-width: 118.75rem) {
+        .title-text {
+          position: absolute;
+          top: 0;
+          left: -10%;
+          width: 120%;
+          font-size: 18.75rem;
+        }
+        footer {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 1.25rem;
+        }
+      }
+      
+      @media screen and (max-width: 62.5rem) {
+        body {
+          min-width: min-content;
+        }
+        .dots {
+          position: static;
+        }
+        .dot {
+          display: inline-block;
+        }
+        .airpod-details {
+          margin: auto;
+        }
+        .add-to-cart {
+          margin: auto;
+        }
+      }
+    </style>
+  </head>
+  <body class="black">
+    <div class="page">
+      <header>
+        <div class="logo">
+          <img src="img/logo.png" alt="logo">
+        </div>
+        <div class="menu">
+          <ul>
+            <li>Mac</li>
+            <li>ipad</li>
+            <li>iphone</li>
+            <li>watch</li>
+            <li>TV</li>
+            <li>Music</li>
+            <li>Support</li>
+            <li>
+              <img src="img/search.png" alt="search">
+            </li>
+            <li>
+              <img src="img/shopping_bag.png" alt="cart">
+            </li>
+          </ul>
+        </div>
+      </header>
+      <div class="hero-section">
+        <h1 class="title-text">
+          <!-- <h1> -->
+            AirPods Max
+          <!-- </h1> -->
+        </h1>
+        <!-- <img src="./img/black.png" alt="Airpod Max" id="airpod-img"> -->
+        <div class="hero-img-container">
+          <img src="./img/black.png" class="hero-img black" alt="Airpod Max" id="relative">
+          <img src="./img/blue.png" class="hero-img blue" alt="Airpod Max">
+          <img src="./img/green.png" class="hero-img green" alt="Airpod Max">
+          <img src="./img/red.png" class="hero-img red" alt="Airpod Max">  
+        </div>
+        <div class="dots">
+          <button class="dot black"></button>
+          <button class="dot blue"></button>
+          <button class="dot green"></button>
+          <button class="dot red"></button>
+        </div>
+      </div>
+      <footer>
+        <div class="airpod-details">
+          <ul>
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Tech Specs</a></li>
+          </ul>
+        </div>
+        <button class="add-to-cart">
+          Add to basket
+        </button>
+      </footer>
+    </div>
+
+    <script>
+      const images = document.querySelectorAll(".hero-img");
+      const colors = ["black", "blue", "green", "red"];
+      let currentColor = "black";
+      let currentIndex = 0;
+
+      function changeImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        document.body.classList.remove(currentColor);
+        currentColor = colors[currentIndex];
+        document.body.classList.add(currentColor);
+      }
+
+      let interval = setInterval(changeImage, 5000);
+
+      const dots = document.querySelectorAll(".dot");
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          currentIndex = index;
+          document.body.classList.remove(currentColor);
+          currentColor = colors[currentIndex];
+          document.body.classList.add(currentColor);
+          clearInterval(interval);
+          interval = setInterval(changeImage, 5000);
+        })
+      })
+    </script>
+       
+  </body>
+</html>
