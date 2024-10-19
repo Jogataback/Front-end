@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      a {
+        display: inline-block;
+        text-transform: capitalize;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color 300ms;
+      }
+
+      body {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        align-content: center;
+        font-family: Georgia, serif;
+        background-color: #01003f;
+      }
+
+      .page {
+        max-width: 115rem;
+        margin: auto;
+        padding: 1rem;
+      }
+
+      header {
+        position: relative;
+        max-width: 112.5rem;
+        margin: auto;
+        padding: min(1%, 1.22rem) min(2.8rem, 2.5%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        z-index: 2;
+      }
+
+      .logo {
+        margin: 0.625rem 0;
+        padding: 0.36em;
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: transparent;
+        background: linear-gradient(45deg, #1952ab, #59ffff, #1952ab);
+        background-position: 0;
+        background-size: 200%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: background-position 500ms;
+      }
+      .logo:hover {
+        background-position: 100%;
+      }
+
+      nav {
+        margin: 0.625rem;
+      }
+
+      nav a {
+        margin: 0.2rem 0.625rem;
+        padding: 0.2em 0.56em;
+        color: #fff;
+        font-size: 1.12rem;
+        font-weight: 500;
+      }
+      nav a.active, 
+      nav a:hover {
+        color: #42c1e8;
+      }
+
+      .btn {
+        padding: 0.52em 1.5em;
+        color: #01003f;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        border-radius: 0.35rem;
+        background-color: #42c1e8;
+      }
+
+      header .btn {
+        margin: 0.625rem 0;
+      }
+
+      .home {
+        position: relative;
+        max-width: 112.5rem;
+        margin: auto;
+        padding: 3.12rem min(3rem, 3%) 6.25rem;
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+        align-items: center;
+        background-color: #01003f;
+      }
+
+      .earth {
+        position: absolute;
+        left: -10%;
+        content: "";
+        width: 80%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.5);
+        animation: opacity 1s linear both;
+        animation-delay: 1s;
+        opacity: 0.4;
+        overflow: hidden;
+      }
+      .earth .images {
+        height: 100%;
+        display: flex;
+        aspect-ratio: 4508 / 1032;
+        animation: world 60s linear infinite;
+      }
+      .earth .images img {
+        flex-shrink: 0;
+      }
+      @keyframes world {
+        0% {
+          transform: translateX(-77.1167%);
+        }
+        100% {
+          transform: translateX(-27.1167%);
+        }
+      }
+      @keyframes opacity {
+        0% {
+          opacity: 0;
+        }
+      }
+
+      .home-content, 
+      .hero {
+        flex: 1 1 37.5rem;
+        max-width: 51.9rem;
+        color: #fff;
+      }
+      .home-content {
+        position: relative;
+        z-index: 2;
+      }
+      .hero {
+        margin: auto;
+      }
+      .hero img {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 3rem;
+        color: transparent;
+        text-transform: capitalize;
+        background: linear-gradient(45deg, #1952ab, #59ffff, #1952ab 60%);
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      p {
+        margin: 1.625rem 0 2rem;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+      }
+
+      .btns {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .btns .btn {
+        font-size: 1.22rem;
+        border: 2px solid #42c1e8;
+      }
+      .btn.alt {
+        color: #42c1e8;
+        background-color: transparent;
+      }
+      .btn.alt:hover {
+        color: #01003f;
+        background-color: #42c1e8;
+      }
+
+      .authentication {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        display: none;
+        background-color: #01003f;
+        background-image: url("./img/blue-bg.jpg");
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        z-index: 3;
+      }
+      .authentication.visible {
+        display: flex;
+      }
+      .authentication::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: rgba(1, 0, 63, 0.2);
+        background: linear-gradient(to left, 
+          transparent, rgba(1, 0, 63, 0.6), transparent);
+      }
+
+      .wrapper {
+        width: 100%;
+        max-width: 47rem;
+        margin: auto;
+        padding: 2rem 1rem;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(50px);
+        box-shadow: rgba(0, 0, 0, 0.2);
+      }
+
+      form h2 {
+        margin-bottom: 20px;
+        font-size: 36px;
+        text-align: center;
+        text-transform: capitalize;
+      }
+
+      .input-box {
+        width: 98%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .input-field {
+        position: relative;
+        width: 49%;
+        margin: 14px 0;
+      }
+      .input-field input {
+        width: 100%;
+        padding: 1em 1em 1em 2.5em;
+        color: #fff;
+        font-size: 1rem;
+        outline: 1px solid transparent;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        background-color: transparent;
+      }
+      .input-field input:focus-visible {
+        outline: 1px solid rgba(255, 255, 255, 0.6);
+      }
+      input::placeholder {
+        color: #fff;
+      }
+      .input-field i {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+      }
+
+      form button {
+        display: block;
+        min-width: 50%;
+        margin: auto;
+        padding: 0.6em 2em;
+        color: #333;
+        font-size: 1.2rem;
+        font-weight: 600;
+        font-family: inherit;
+        text-transform: capitalize;
+        outline: 1px solid transparent;
+        border: 1px solid #fff;
+        border-radius: 6px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+      form button:focus-visible {
+        outline: 1px solid rgba(255, 255, 255, 0.6);
+      }
+
+      form label {
+        display: block;
+        max-width: 98%;
+        margin: 1.2rem auto 2rem;
+        font-size: 1rem;
+        text-align: center;
+      }
+      form label input {
+        margin-right: 5px;
+        accent-color: #fff;
+      }
+
+      @media (max-width: 61rem) {
+        .earth {
+          width: 100%;
+          min-width: 61rem;
+          right: 0;
+          left: auto;
+        }
+      }
+      @media (max-width: 36rem) {
+        .input-field {
+          width: 100%;
+        }
+        form button {
+          max-width: 100%;
+        }
+      }
+      @media (max-width: 25rem) {
+        h1 {
+          font-size: calc(1rem + 2vw);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="page">
+
+      <header>
+        <a href="#" class="logo">crypto.</a>
+        <nav>
+          <a href="#" class="active">home</a>
+          <a href="#">about</a>
+          <a href="#">pricing</a>
+          <a href="#">services</a>
+          <a href="#">contact</a>
+        </nav>
+        <a href="#" class="btn">sign up</a>
+      </header>
+  
+      <section class="home">
+  
+        <div class="earth">
+          <div class="images">
+            <img src="./img/earth.png" alt="">
+            <img src="./img/earth.png" alt="">
+          </div>
+        </div>
+  
+        <div class="home-content">
+          <h1>the next generation decentralized cryptocurrency</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consectetur, eaque qui illum dolorum recusandae autem exercitationem saepe atque quia.</p>
+          <div class="btns">
+            <a href="#" class="btn">get started</a>
+            <a href="#" class="btn alt">learn more</a>
+          </div>
+        </div>
+  
+        <div class="hero">
+          <img src="./img/coin.jpg" alt="Crypto coin">
+        </div>
+  
+      </section>
+  
+      <section class="authentication">
+        <div class="wrapper">
+          <div class="form-container register">
+  
+            <form action="">
+              <h2>registration</h2>
+  
+              <div class="input-box">
+                <div class="input-field">
+                  <input type="text" name="full" id="full" placeholder="Full Name">
+                  <i class="fa fa-user-o"></i>
+                </div>
+                <div class="input-field">
+                  <input type="text" name="last" id="last" placeholder="Last Name">
+                  <i class="fa fa-user-o"></i>
+                </div>
+              </div>
+  
+              <div class="input-box">
+                <div class="input-field">
+                  <input type="email" name="email" id="email" placeholder="Email">
+                  <i class="fa fa-envelope-o"></i>
+                </div>
+                <div class="input-field">
+                  <input type="tel" name="phone" id="phone" placeholder="Phone Number">
+                  <i class="fa fa-phone"></i>
+                </div>
+              </div>
+  
+              <div class="input-box">
+                <div class="input-field">
+                  <input type="password" name="confirm" id="confirm" placeholder="Confirm Password">
+                  <i class="fa fa-key"></i>
+                </div>
+                <div class="input-field">
+                  <input type="password" name="password" id="password" placeholder="Password">
+                  <i class="fa fa-key"></i>
+                </div>
+              </div>
+  
+              <label for="agree">
+                <input type="checkbox" name="agree" id="agree">
+                I hereby declare that the information provided is true and correct.
+              </label>
+  
+              <button type="submit">register</button>
+            </form>
+  
+          </div>
+        </div>
+      </section>
+      <script>
+        const forms = document.querySelector(".authentication");
+        const btn = document.querySelector("header .btn");
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          forms.classList.toggle("visible");
+        })
+      </script>
+      
+    </div>
+
+  </body>
+</html>
