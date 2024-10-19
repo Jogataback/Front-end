@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <title>URLSearchParams in JS</title> -->
+    <title>Greenade</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      button {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      button:focus-within {
+        outline: 1px solid #fff8;
+      }
+
+      body {
+        /* width: 100%; */
+        /* height: 100vh; */
+        min-height: 100vh;
+        /* align-items: center; */
+        /* justify-content: center; */
+        /* display: grid; */
+        /* place-items: center; */
+        font-family: 'Redressed', cursive;
+      }
+      
+      .page {
+        min-height: 100vh;
+        padding: 2%;
+        display: flex;
+        background: linear-gradient(125deg, #74a436, #018a1f);
+      }
+
+      .body {
+        /* min-height: 80vh; */
+        margin: auto;
+        display: flex;
+        border: 1px solid #fff;
+        border-radius: 10px;
+        background: linear-gradient(125deg, #74a436, #018a1f);
+        box-shadow: -20px 20px 20px rgba(0, 0, 0, 0.5);
+      }
+      
+      header {
+        /* width: 70%; */
+        /* height: 80%; */
+        /* min-height: 80vh; */
+        /* margin: auto; */
+        /* display: flex; */
+        /* border: 1px solid black; */
+        padding-bottom: 15px;
+        border-bottom: 1px solid #fff;
+        /* border-radius: 10px; */
+        /* overflow: hidden; */
+      }
+
+      .main {
+        /* display: flex; */
+        /* width: 93%; */
+        /* padding: 15px 5%; */
+        padding: 15px 30px;
+      }
+
+      section, 
+      aside {
+        position: relative;
+        /* width: 50%; */
+        /* height: 100%; */
+        /* border: 1px solid black; */
+      }
+
+      main {
+        /* width: 93%; */
+        /* padding: 15px 5%; */
+        padding-top: 60px;
+        display: flex;
+      }
+
+      aside {
+        /* width: 7%; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        /* border: 1px solid #fff; */
+        border-left: 1px solid #fff;
+        border-radius: 0 10px 10px 0;
+        /* outline: 1px solid #018a1f; */
+        box-shadow: -20px 0px 20px #0005;
+      }
+
+      nav {
+        /* width: 100%; */
+        /* height: 30px; */
+        display: flex;
+        row-gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        /* border: 1px solid red; */
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: Georgia, serif;
+        text-transform: uppercase;
+      }
+      .logo span {
+        font-weight: 300;
+      }
+
+      ul {
+        /* width: 100%; */
+        margin: auto;
+        text-align: center;
+        /* display: flex; */
+        /* align-items: center; */
+        /* justify-content: center; */
+      }
+      ul li {
+        list-style: none;
+        display: inline-block;
+        /* margin: 0 15px; */
+        margin: 5px 15px;
+        font-size: 20px;
+        text-transform: capitalize;
+      }
+      header li a {
+        color: #fff;
+        padding: 5px 10px;
+        transition: color 300ms ease;
+        /* border: 1px solid; */
+      }
+      header li a:hover {
+        color: #fff9;
+      }
+
+      .content {
+        max-width: 350px;
+        /* margin-top: 60px; */
+      }
+
+      .num {
+        position: relative;
+        /* margin-left: 100px; */
+        display: flex;
+        color: #fff;
+        font-size: 30px;
+      }
+      .num::before {
+        /* position: absolute; */
+        order: 1;
+        position: relative;
+        display: block;
+        /* top: 50%; */
+        /* top: 0; */
+        /* left: 70px; */
+        /* bottom: 11px; */
+        content: "";
+        /* width: 150px; */
+        width: 50%;
+        height: 1px;
+        margin: auto auto auto 10px;
+        /* border: 2px solid #fff; */
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      .num span:nth-child(1) {
+        margin-left: auto;
+      }
+      .num span:nth-child(2) {
+        color: rgba(255, 255, 255, 0.5);
+        /* font-size: 11px; */
+        font-size: 0.5em;
+        /* margin-top: auto; */
+        margin-left: 2px;
+      }
+
+      .content {
+        text-align: center;
+      }
+
+      .content h1 {
+        margin: 20px 0;
+        color: #fff;
+        /* font-size: 50px; */
+        font-size: min(1.5rem + 3vw, 3rem);
+        /* line-height: 50px; */
+        line-height: 3rem;
+        font-weight: 600;
+        font-family: Georgia, serif;
+        text-transform: uppercase;
+      }
+      .content h1 span {
+        display: block;
+      }
+
+      .content p {
+        /* width: 280px; */
+        /* margin: 20px 0; */
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 20px;
+        /* text-align: center; */
+        /* word-break: break-all; */
+      }
+
+      .content a {
+        /* position: relative; */
+        display: inline-block;
+        margin-top: 20px;
+        padding: 8px 25px;
+        color: #fff;
+        font-size: 20px;
+        /* font-weight: 600; */
+        text-transform: capitalize;
+        border: 1px solid #fff;
+        border-radius: 2em;
+        transition: color 300ms ease, 
+            border-color 300ms ease;
+      }
+      .content a:hover {
+        color: #fff9;
+        border: 1px solid #fff9;
+      }
+
+      .sr-change {
+        display: flex;
+        align-items: center;
+        /* margin-top: 50px; */
+        margin: 25px 0;
+        color: #fff;
+        /* background-color: #018a1f; */
+        /* background: linear-gradient(125deg, #74a436, #018a1f); */
+        /* background-size: 200%; */
+        position: relative;
+        z-index: 3;
+      }
+      .sr-change button {
+        margin: 0 10px;
+        color: #fff;
+        font-family: inherit;
+        cursor: pointer;
+      }
+      /* .sr-change button:first-child {
+        margin-left: 0;
+      } */
+      .sr-change div {
+        width: 0;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.8);
+        transition: 1s linear;
+      }
+      .w-ch.active + div {
+        /* width: 200px; */
+        width: 100%;
+      }
+      /* .sr-change h5:nth-child(2) {
+        width: 200px;
+      } */
+
+      h2 {
+        /* position: absolute; */
+        /* bottom: -30px; */
+        /* color: #fff; */
+        color: transparent;
+        -webkit-text-stroke: 1px #fff;
+        /* font-size: 10rem; */
+        /* font-size: 9vw; */
+        font-size: min(9vw, 11rem);
+        /* font-weight: 800; */
+        font-family: Georgia, serif;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        /* position: absolute; */
+        /* top: 14%; */
+        /* left: 35%; */
+        width: 400px;
+        max-width: 400px;
+        filter: drop-shadow(30px 30px 20px #0008);
+      }
+      .hero img {
+        /* width: 100%; */
+        height: 130%;
+      }
+
+      .fa-bars {
+        padding: 5px 7px;
+        color: #fff;
+        font-size: 25px;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      aside ul {
+        /* position: relative; */
+        height: 90%;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      aside ul li {
+        /* padding: 20px 3px; */
+        margin: 15px;
+        transition: 300ms ease;
+      }
+      aside ul li:hover {
+        transform: rotate(360deg);
+      }
+      aside ul li a {
+        /* position: relative; */
+        /* padding: 5px 8px; */
+        display: inline-block;
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: 50%;
+      }
+      aside a i {
+        padding: 9px 10px;
+      }
+
+      /* .fa-instagram {
+        padding: 9px 10px;
+      } */
+      .fa-facebook-f {
+        padding: 11px 14px 9px;
+        /* width: 30px;
+        height: 30px;
+        padding: 5px;
+        color: #018a1f;
+        border-radius: 50%;
+        background-color: #fff; */
+      }
+
+      @media screen and (max-width: 1020px) {
+        main {
+          display: block;
+        }
+        .content, 
+        .hero {
+          margin: auto;
+        }
+        .hero, 
+        .hero img {
+          width: 100%;
+        }
+      }
+
+      /* .sr-change {
+        display: flex;
+        align-items: center;
+      } */
+      /* .sr-change button {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .sr-change button::after {
+        position: relative;
+        display: block;
+        content: "";
+        width: 0;
+        height: 1px;
+        background-color: #fff;
+        transition: 1s linear;
+      }
+      .sr-change button.active::after {
+        width: 200px;
+      }
+ */
+      .test {
+        display: flex;
+        margin: 50px;
+        width: 400px;
+        border: 1px solid blue;
+      }
+      .test div {
+        flex: 1;
+        /* width: 100px; */
+        height: 20px;
+        margin: 0 10px;
+        border: 1px solid red;
+        transition: 400ms;
+      }
+      .test div:hover {
+        /* transform: scaleX(200%); */
+        /* width: 400px; */
+        flex: 9;
+      }
+
+      /* body {
+        display: block;
+      } */
+    </style>
+  </head>
+  <body>
+    <!-- <div class="test">
+      <div class="div1"></div>
+      <div class="div2"></div>
+    </div> -->
+
+    <div class="page">
+      <div class="body">
+  
+        <div class="main">
+          <header>
+            <nav>
+              <a href="#logo" class="logo">gree<span>nade</span></a>
+              <ul>
+                <li><a href="#">home</a></li>
+                <li><a href="#">where to find</a></li>
+                <li><a href="#">contact</a></li>
+              </ul>
+            </nav>
+          </header>
+  
+          <main>
+            <div class="content">
+              <div class="num">
+                <span id="slide-number">01</span><span>/05</span>
+              </div>
+
+              <h1>a healthy <span>explosion</span></h1>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo quisquam maiores error mollitia beatae inventore placeat doloribus, ut officia tempore.</p>
+              <a href="#">read more</a>
+
+              <div class="sr-change">
+                <button class="w-ch active">01</button>
+                <div class="wi-ch"></div>
+                <button class="w-ch">02</button>
+                <div class="wi-ch"></div>
+                <button class="w-ch">03</button>
+                <div class="wi-ch"></div>
+                <button class="w-ch">04</button>
+                <div class="wi-ch"></div>
+                <button class="w-ch">05</button>
+                <div class="wi-ch"></div>
+              </div>
+            </div>
+
+            <div class="hero">
+              <img src="./greenade.png" alt="">
+            </div>
+          </main>
+
+          <h2>greenade!</h2>
+        </div>
+  
+        <aside>
+          <i class="fa fa-bars"></i>
+          <ul>
+            <li><a href="#">
+              <i class="fa fa-facebook-f"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-twitter"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-instagram"></i>
+            </a></li>
+          </ul>
+        </aside>
+  
+      </div>
+    </div>
+    <script>
+      const page = document.querySelector(".page");
+      const hueButtons = document.querySelectorAll(".w-ch");
+      // const widthElements = document.querySelectorAll(".wi-ch");
+      // console.log(hueButtons);
+      
+      // const rtc = () => {
+      //   Array.from(document.getElementsByClassName("wi-ch")).forEach(el => {
+      //     el.style.width = "0";
+      //   })
+      // }
+
+      hueButtons.forEach((button, i) => {
+          button.addEventListener("click", () => {
+            // console.log(el);
+            // rtc();
+            // const rnd = Math.floor(Math.random() * 360);
+            // console.log(rnd);
+            // Array.from(document.getElementsByClassName("wi-ch"))[i].style.width = "200px";
+            // document.getElementsByTagName("header")[0].style.filter = `hue-rotate(${rnd}deg)`;
+            // document.body.style.filter = `hue-rotate(${i * 72}deg)`;
+            // const activeWidthElement = document.querySelector(".wi-ch.active");
+            // activeWidthElement.classList.remove("active");
+            // widthElements[i].classList.add("active");
+            const activeHueButton = document.querySelector(".w-ch.active");
+            activeHueButton.classList.remove("active");
+            button.classList.add("active");
+            page.style.filter = `hue-rotate(${i * 72}deg)`;
+            const slideNumber = document.getElementById("slide-number");
+            // slideNumber.textContent = `0${i + 1}`;
+            slideNumber.textContent = button.textContent;
+          })
+        })
+
+    </script>
+  </body>
+</html>
