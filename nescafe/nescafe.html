@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <title>Nescafe Xpress</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Brawler:wght@400;700&family=Croissant+One&family=Ephesis&family=Gloock&family=Hurricane&family=Imbue:opsz,wght@10..100,100..900&family=Modak&family=Montez&family=Prosto+One&family=Rye&family=Shojumaru&family=Young+Serif&family=ZCOOL+XiaoWei&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: "Imbue", serif;
+        background: 
+          linear-gradient(
+            #f09159, #cc5721);
+      }
+
+      .page {
+        overflow: hidden;
+      }
+
+      header {
+        position: relative;
+        /* width: 100%; */
+        max-width: 80rem;
+        margin: auto;
+        padding: min(5vw, 2.5rem);
+        display: flex;
+        align-items: center;
+        z-index: 2;
+      }
+
+      nav {
+        width: 90%;
+        margin: auto;
+        padding: min(4vw, 2rem) 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      header ul {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+        list-style: none;
+      }
+      header li {
+        position: relative;
+        padding: 0.6em;
+        font-family: "ZCOOL XiaoWei", sans-serif;
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 400;
+        text-transform: capitalize;
+        cursor: pointer;
+      }
+      header li::after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 4px;
+        content: '';
+        width: 3rem;
+        height: 2px;
+        margin: auto;
+        transform: scale(0);
+        background-color: #fff;
+        transition: transform 500ms;
+      }
+      header ul li:hover::after {
+        transform: scale(1);
+      }
+
+      .logo {
+        max-width: 10rem;
+      }
+      .logo::after {
+        content: none;
+      }
+      .logo img {
+        width: 100%;
+        transition: transform 500ms;
+      }
+      .logo:hover img {
+        transform: scale(1.1);
+      }
+      @media screen and (max-width: 43.75rem) {
+        .logo {
+          order: -1;
+        }
+      }
+
+      .hero-section {
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto 100%;
+      }
+      .hero-section::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto 100%;
+        transition: opacity 1s ease-out;
+        opacity: 0;
+      }
+      
+      .slider {
+        position: relative;
+      }
+      
+      #relative {
+        position: relative;
+      }
+      .coffee-section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 75vh;
+        padding: 3rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        transition: opacity 500ms;
+        opacity: 0;
+      }
+      .coffee-section.active {
+        opacity: 1;
+        z-index: 1;
+      }
+
+      .title {
+        color: #fff;
+        color: transparent;
+        font-size: min(calc(20vw + 2rem), 16.9rem);
+        font-weight: 400;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        background-size: 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        filter: drop-shadow(1px 1px 1px #000);
+        pointer-events: none;
+      }
+
+      .main-img-container {
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      @media screen and (min-width: 43.75rem) {
+        .main-img-container {
+          position: absolute;
+        }
+      }
+      
+      .main-img {
+        max-width: 28rem;
+        transform: scale(1) rotate(10deg);
+      }
+      
+      .button-container {
+        width: 100%;
+        max-width: 80rem;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+      button {
+        padding: 0.75em 1em;
+        color: #fff;
+        font-size: min(calc(16px + 1vw), 1.25rem);
+        font-weight: 400;
+        font-family: "ZCOOL XiaoWei", sans-serif;
+        text-transform: uppercase;
+        border: 1px solid #fff;
+        background-color: #0007;
+        cursor: pointer;
+      }
+      .button {
+        position: relative;
+        transform: translateY(-50%);
+        opacity: 0;
+      }
+      .button::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color:#fff;
+        transform-origin: left;
+        transform: scaleX(0);
+        transition: 0.5s;
+        z-index: -1;
+      }
+      .button:hover::before {
+        transform: scaleX(1);
+      }
+      .button:hover button {
+        color: black;
+        background-color: transparent;
+      }
+      
+      .thumbs {
+        position: relative;
+        padding: 2.5rem 0;
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+      }
+      
+      .thumb img {
+        width: 5rem;
+        height: 5rem;
+        object-fit: contain;
+        transition: opacity 300ms linear, 
+                 transform 300ms linear;
+        opacity: 0.6;
+        cursor: pointer;
+      }
+      .thumb:hover img, 
+      .thumb.active img {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+
+      /* without bg */
+      .hero-section.none::after {
+        background: none;
+      }
+      
+      /* hero-section.black */
+      .hero-section.black::after {
+        background-image: url("./img/black-bg.png");
+        opacity: 1;
+      }
+      
+      .coffee-section.black .title {
+        background-image: 
+          linear-gradient(
+            45deg, #000, #fff, 
+            #000, #fff, #000);
+      }
+      .coffee-section.choco .title {
+        background-image: 
+          linear-gradient(
+            45deg, #502d1e, #fff, #502d1e);
+      }
+      .coffee-section.vanilla .title {
+        background-image: 
+          linear-gradient(
+            45deg, #3f769f, #fff, 
+            #3f769f, #fff, #3f769f);
+      }
+      .coffee-section.original .title {
+        background-image: 
+          linear-gradient(
+            45deg, #cd5923, #fff, #cd5923);
+      }
+      
+      .main-img-container::after {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        content: "";
+        width: 200%;
+        height: 200%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        opacity: 0;
+        z-index: -1;
+      }
+      .main-img-container.vanilla::after {
+        top: -70%;
+        left: -70%;
+        width: 240%;
+        height: 240%;
+        background-image: url("./img/white-bg.png");
+        /* filter: saturate(0); */
+        filter: grayscale(1);
+      }
+      .main-img-container.original::after {
+        background-image: url("./img/orange-bg.png");
+        filter: saturate(2);
+      }
+      .main-img-container.choco::after {
+        background-image: url("./img/brown-bg.png");
+      }
+      
+      .main-img-container::after {
+        animation: fade-in 2s ease-in backwards;
+      }
+      .active .title {
+        animation: fade-down 1s ease-out backwards;
+        animation-delay: 1s;
+      }
+      .active .main-img {
+        animation: zoom-in 1s ease-out backwards;
+        animation-delay: 1.5s;
+      }
+      .button {
+        animation: slow-fade-down 1s ease-out backwards;
+        animation-delay: 1.2s;
+      }
+
+      .active .main-img-container::after {
+        transition: opacity 2s ease-out;
+        transition-delay: 500ms;
+        opacity: 1;
+      }
+      
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+        }
+      }
+      @keyframes fade-down {
+        0% {
+          transform: translateY(-10%);
+          opacity: 0;
+        }
+      }
+      @keyframes slow-fade-down {
+        0% {
+          transform: translateY(-50%);
+          opacity: 0;
+        }
+        /* 100% {
+          transform: translateY(0);
+          opacity: 1;
+        } */
+      }
+      @keyframes zoom-in {
+        0% {
+          transform: scale(0.8) rotate(0deg);
+          opacity: 0;
+        }
+      }
+      
+      .active .button {
+        transition: opacity 1s ease-in, 
+                  transform 1s ease-in;
+        transition-delay: 1.2s, 1.2s;
+        transform: translateY(0);
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="page">
+
+      <header>
+        <ul>
+          <li>about</li>
+          <li>products</li>
+          <li class="logo">
+            <img src="./img/logo.png" alt="">
+          </li>
+          <li>stores</li>
+          <li>contact</li>
+        </ul>
+      </header>
+
+      <div class="hero-section">
+        <div class="slider">
+
+          <div class="coffee-section choco">
+            <h1 class="title">cafe choco</h1>
+            
+            <div class="main-img-container choco">
+              <img src="./img/brown.png" alt="" class="main-img">
+            </div>
+            
+            <div class="button-container">
+              <div class="button">
+                <button>find in store</button>
+              </div>
+              <div class="button">
+                <button>more details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="coffee-section vanilla">
+            <h1 class="title">cafe vanilla</h1>
+            
+            <div class="main-img-container vanilla">
+              <img src="./img/white.png" alt="" class="main-img">
+            </div>
+            
+            <div class="button-container">
+              <div class="button">
+                <button>find in store</button>
+              </div>
+              <div class="button">
+                <button>more details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="coffee-section original active" id="relative">
+            <h1 class="title">the original</h1>
+            
+            <div class="main-img-container original">
+              <img src="./img/orange.png" alt="" class="main-img">
+            </div>
+            
+            <div class="button-container">
+              <div class="button">
+                <button>find in store</button>
+              </div>
+              <div class="button">
+                <button>more details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="coffee-section black">
+            <h1 class="title">black roast</h1>
+            
+            <div class="main-img-container">
+              <img src="./img/black.png" alt="" class="main-img">
+            </div>
+            
+            <div class="button-container">
+              <div class="button">
+                <button>find in store</button>
+              </div>
+              <div class="button">
+                <button>more details</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="thumbs">
+          <div class="thumb">
+            <img src="./img/brown.png" alt="Nescafe Xpress">
+          </div>
+          <div class="thumb">
+            <img src="./img/white.png" alt="Nescafe Xpress">
+          </div>
+          <div class="thumb active">
+            <img src="./img/orange.png" alt="Nescafe Xpress">
+          </div>
+          <div class="thumb">
+            <img src="./img/black.png" alt="Nescafe Xpress">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      const heroSection = document.querySelector(".hero-section");
+      const mainimg = document.getElementById("main-img");
+      const slides = document.querySelectorAll(".coffee-section");
+      const thumbs = document.querySelectorAll(".thumb");
+
+      const bgColors = [
+        'linear-gradient(rgb(64 32 21), rgb(124 82 55))', 
+        'linear-gradient(rgb(81 157 212 / 75%), rgb(23 77 117))', 
+        'linear-gradient(#f09159, #cc5721)', 
+        'linear-gradient(#5a5858, #000000)'
+      ]
+
+      const backgrounds = ["none", "none", "none", "black"];
+
+      thumbs.forEach((thumb, index) => {
+        thumb.addEventListener("click", () => {
+          const activeThumb = document.querySelector(".thumb.active");
+          activeThumb.classList.remove("active");
+          thumb.classList.add("active");
+          const activeSlide = document.querySelector(".coffee-section.active");
+          activeSlide.classList.remove("active");
+          slides[index].classList.add("active");
+          document.body.style.background = bgColors[index];
+          heroSection.className = `hero-section ${backgrounds[index]}`;
+        })
+      })
+    </script>
+
+  </body>
+</html>
