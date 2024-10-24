@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nike</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      a {
+        text-transform: capitalize;
+        text-decoration: none;
+      }
+
+      button {
+        padding: 0.4em 1em;
+        border: none;
+        outline: none;
+        font-family: Georgia, serif;
+        text-transform: capitalize;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      button:focus-within {
+        outline: 1px solid #fff8;
+      }
+
+      a, button {
+        transition: color 500ms ease-in-out, background 500ms ease-in-out;
+        /* transition: all 5000ms ease-in-out; */
+      }
+
+      img {
+        width: 100%;
+      }
+
+      body {
+        /* width: 100%; */
+        /* height: 100vh; */
+        min-height: 100vh;
+        display: flex;
+        padding: 1vw;
+        /* align-items: center; */
+        /* justify-content: center; */
+        /* display: grid; */
+        /* place-items: center; */
+        font-family: 'Redressed', cursive;
+        /* background-color: #22559e; */
+      }
+
+      body{
+    /* width: 100%; */
+    /* height: 100vh; */
+    background-color: #000;
+    /* font-family: 'Poppins', sans-serif; */
+    /* overflow: hidden; */
+}
+
+.page {
+  margin: auto;
+  padding: 1rem min(2vw, 2rem);
+  /* background-color: #000; */
+  /* display: flex; */
+  border-radius: 20px;
+  box-shadow: 0.1rem 0.3rem 0.5rem #333, -0.1rem -0.3rem 0.5rem #555;
+  overflow: hidden;
+}
+
+nav {
+  /* width: 100%; */
+  /* height: 10vh; */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
+
+.logo img {
+    margin-left: 20px;
+    max-width: 100px;
+    filter: drop-shadow(-1px -1px 1px #fff8) drop-shadow(1px 1px 1px #fff2);
+}
+
+.links a {
+  position: relative;
+  margin: 0 20px;
+  /* text-decoration: none; */
+  /* cursor: pointer; */
+  color: white;
+  /* transition: 0.3s linear; */
+}
+.links a::before{
+  position: absolute;
+  left: 0;
+  bottom: -10%;
+  content: "";
+  width: 100%;
+  height: 10%;
+  background-color: #f74f10;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms linear;
+}
+.links a:hover{
+  /* width: 100%; */
+  color: #f74f10;
+}
+.links a:hover::before {
+  transform: scaleX(100%);
+}
+
+.search i {
+    color: white;
+    font-size: 1.3rem;
+    margin-right: 20px;
+    /* cursor: pointer; */
+}
+
+/* Section Starts */
+section {
+  /* width: 100%; */
+  /* height: 90vh; */
+  /* max-width: 1600px; */
+  max-width: 100rem;
+  margin: auto;
+  /* padding: 3rem 1rem; */
+  padding: 3rem min(1vw, 1rem);
+}
+
+section .content {
+  /* width: 100%; */
+  /* height: 100%; */
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.content .main-content {
+  max-width: 500px;
+  margin: 0 auto;
+  color: white;
+  /* width: 100%; */
+}
+
+.main-content h1 {
+  font-size: clamp(3rem, 2rem + 6vw, 6rem);
+  font-family: Georgia, serif;
+  text-transform: capitalize;
+  color: transparent;
+  -webkit-text-stroke: 1px #fff;
+  /* -webkit-text-stroke: 1px #000; */
+  /* filter: drop-shadow(-1px -1px 1px #fffa) drop-shadow(1px 1px 1px #fff); */
+  /* color: #000; */
+  /* text-shadow: -2px -2px 2px #fff5, 1px 1px 1px #fff4; */
+}
+.main-content h2 {
+    color: #f74f10;
+    font-size: clamp(2rem, 1rem + 5vw, 3.5rem);
+    text-transform: capitalize;
+}
+.main-content h4 {
+    text-transform: capitalize;
+}
+
+.main-content p {
+    margin-top: 10px;
+    color: #635e5c;
+    /* font-size: 16px; */
+    font-size: 1rem;
+}
+
+.main-content .order {
+  /* width: 100%; */
+  /* min-height: 7vh; */
+  margin: 10px;
+  display: flex;
+  column-gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.order h3 {
+  margin-top: 10px;
+  font-size: 1.8rem;
+}
+
+.order button {
+  min-width: 50%;
+  /* margin-left: 10px; */
+  margin-top: 10px;
+  margin-bottom: auto;
+  padding: 1.2em 1.4em;
+  color: white;
+  /* font-size: 1rem; */
+  font-size: min(6vw, 1rem);
+  font-weight: 700;
+  /* border: none; */
+  /* outline: none; */
+  border-radius: 10px;
+  background: linear-gradient(to bottom right, #f74f10 40%, #8a3313);
+  /* transition: 0.1s linear; */
+}
+.order button:hover{
+  background: linear-gradient(to bottom right, #8a3313 ,  #f74f10 40%);
+  box-shadow: 0 0 30px #f74f10;
+}
+
+.content .hero-img {
+  max-width: 500px;
+  /* border: 1px solid red; */
+  /* overflow: hidden; */
+}
+.content .hero-img img {
+  /* width: 100%; */
+  /* max-width: 450px; */
+  /* margin-right: 100px; */
+  /* transform: rotate(40deg) translateX(900px); */
+  /* transform: rotate(0deg) translateX(0); */
+  transform: translateX(0) rotate(0deg);
+  filter: drop-shadow(-10px -10px 200px #f74f10);
+}
+
+/* @media (max-width:800px){
+    .content{
+        display: flex;
+        width: 100%;
+        flex-direction: column-reverse;
+    }
+
+    .main-content{
+        margin: 0 10px;
+    }
+} */
+
+/* @media (min-width:884px){
+    .content .image img{
+        min-width: 500px;
+    }
+} */
+
+@media (max-width: 540px) {
+  body {
+    padding: 0;
+  }
+  .links {
+    display: none;
+  }
+  .page {
+    border-radius: 0px;
+  }
+
+    /* .content .image img{
+        width: 100%;
+        margin-right: none;
+    }*/
+}
+
+.zoom-in {
+    animation: zoom-in 2s linear;
+}
+.fade-left {
+    animation: fade-left 2s linear backwards;
+}
+.fade-right {
+    animation: fade-right 2s linear backwards;
+}
+.delayed {
+    animation-delay: calc(0.2s * var(--i));
+}
+.paused {
+  animation-play-state: paused;
+}
+
+@keyframes zoom-in {
+  0% {
+    /* transform: rotate(40deg) translateX(100%); */
+    transform: translateX(100%) rotate(40deg);
+    opacity: 0;
+  }
+}
+@keyframes fade-left {
+  0% {
+    transform: translateX(10%);
+    opacity: 0;
+  }
+}
+@keyframes fade-right {
+  0% {
+    transform: translateX(-10%);
+    opacity: 0;
+  }
+}
+
+/* .bounce {
+  animation: bounce 6s linear infinite;
+}
+@keyframes bounce {
+  50% {
+    transform: translateY(-10%);
+  }
+} */
+    </style>
+  </head>
+  <body>
+
+    <div class="page">
+
+      <nav>
+        <!-- <div class="container"> -->
+          <div class="logo">
+            <img src="./images/logo.png" alt="Nike logo">
+          </div>
+          <div class="links">
+            <a href="#">men</a>
+            <a href="#">women</a>
+            <a href="#">kids</a>
+            <a href="#">customize</a>
+            <a href="#">collections</a>
+          </div>
+          <div class="search">
+            <i class="fa fa-search"></i>
+          </div>
+        <!-- </div> -->
+      </nav>
+  
+      <section>
+        <div class="content">
+          <div class="main-content">
+            <!-- <h1 data-aos="fade-right" data-aos-duration="2000">Nike</h1> -->
+            <h1 class="fade-right paused">nike</h1>
+            <!-- <h2 data-aos="fade-left" data-aos-duration="2000" data-aos-delay="200">Air Max Plus</h2> -->
+            <h2 class="fade-left delayed paused" style="--i: 1">air max plus</h2>
+            <!-- <h4 data-aos="fade-right" data-aos-duration="2000" data-aos-delay="400">MAKE THE GROUND SHAKE</h4> -->
+            <h4 class="fade-right delayed" style="--i: 2">make the ground shake</h4>
+            <p data-aos="flip-down delayed" style="--i: 3">Let the attitude have the edge in your Nike
+              Air Max Plus, a Tuned Air experience that offers premium stability and unbelievable cushioning Featuring the
+              OG's wacy design lines, TPU accents and airy mesh on the upper. It celebrates definat style.</p>
+            <div class="order">
+              <h3 class="fade-right delayed paused" style="--i: 4">$249.99</h3>
+              <button class="fade-left delayed paused" style="--i: 4">pre-order now</button>
+            </div>
+          </div>
+          <div class="hero-img">
+            <img src="./images/shoes.png" class="zoom-in paused">
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <script>
+      const observer = new IntersectionObserver(animate);
+      const observerHeroImage = new IntersectionObserver(animateHeroImage);
+
+      const heroImageBox = document.querySelector(".hero-img");
+      observerHeroImage.observe(heroImageBox);
+
+      const elements = document.querySelectorAll(".paused");
+
+      elements.forEach(element => {
+          observer.observe(element);
+      });
+
+      function animate(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("paused");
+          }
+        });
+      }
+
+      function animateHeroImage(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // entry.target.classList.remove("paused");
+            const heroImage = document.querySelector(".hero-img img");
+            heroImage.classList.remove("paused");
+          }
+        });
+      }
+    </script>
+      
+  </body>
+</html>
