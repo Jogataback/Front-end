@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Braga</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Brawler:wght@400;700&family=Croissant+One&family=Ephesis&family=Gloock&family=Hurricane&family=Imbue:opsz,wght@10..100,100..900&family=Modak&family=Montez&family=Prosto+One&family=Rye&family=Shojumaru&family=Young+Serif&family=ZCOOL+XiaoWei&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      body {
+        min-height: 100vh;
+        background-image: url("./img/bg.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+
+      header {
+        position: relative;
+        padding: 1.12rem 4vw;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 2;
+      }
+
+      .navlist {
+        position: relative;
+        display: flex;
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 2.2rem;
+        font-weight: bold;
+        font-family: "Croissant One", serif;
+        text-transform: capitalize;
+      }
+      .logo span {
+        padding-left: 0.04em;
+        color: transparent;
+        font-size: 4.4rem;
+        line-height: 0;
+        -webkit-text-stroke: 1px #fff;
+      }
+
+      .navlist li {
+        margin: 0 1.4rem;
+      }
+
+      .navlist a {
+        padding: 4px 5px;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-bottom: 2px solid transparent;
+        transition: color 400ms ease, 
+              border-color 400ms ease;
+      }
+      .navlist a:hover {
+        border-bottom: 2px solid #fff;
+      }
+
+      #menu-btn {
+        display: none;
+        color: transparent;
+        font-size: 2.25rem;
+        -webkit-text-stroke: 1px #fff;
+        transition: color 400ms ease;
+        cursor: pointer;
+      }
+      #menu-btn:hover {
+        color: #152f5d;
+      }
+      #menu-btn.open:hover {
+        color: #ce1b41;
+      }
+
+      .home-btn {
+        display: inline-block;
+        padding: 0.66em 1.52em;
+        color: #fff;
+        font-size: 1rem;
+        text-transform: uppercase;
+        border-radius: 2em;
+        border: 2px solid #ce1b41;
+        background-color: #ce1b41;
+        transition: border-color 400ms ease, 
+                background-color 400ms ease;
+      }
+      .home-btn:hover {
+        border: 2px solid #fff;
+        background-color: transparent;
+      }
+
+      main {
+        width: 96%;
+        min-height: 100vh;
+        margin-left: auto;
+        padding: 6vw 0;
+        display: flex;
+      }
+
+      .home {
+        width: 100%;
+        display: grid;
+        align-items: center;
+      }
+
+      .home-text h4 {
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .home-text h1 {
+        margin: 0.7rem 0;
+        color: #fff;
+        font-size: 3rem;
+        font-weight: 700;
+        font-family: "Gloock", serif;
+        text-transform: uppercase;
+      }
+
+      .home-text p {
+        max-width: 28.75rem;
+        margin-bottom: 1.4rem;
+        color: #fff;
+        font-size: 1rem;
+        line-height: 1.6;
+        text-transform: uppercase;
+      }
+
+      .home-text span {
+        font-weight: bold;
+      }
+
+      .searchbar {
+        position: relative;
+        width: 100%;
+        max-width: 28.75rem;
+      }
+
+      .searchbar input {
+        font-family: initial;
+        border-radius: 2em;
+      }
+
+      #search-field {
+        display: inline-block;
+        width: 85%;
+        padding: 1em 6rem 1em 1.5em;
+        outline: none;
+        border: 2px solid #ce1b41;
+        box-shadow: 1px 1px 1px #0008, 
+                  -1px -1px 1px #fff4, 
+              inset 1px 1px 1px #000, 
+            inset -1px -1px 1px #fff4; 
+      }
+      #search-field:focus-visible {
+        box-shadow: 1px 1px 1px #0008, 
+                  -1px -1px 1px #fff4, 
+              inset 2px 2px 2px #000, 
+            inset -2px -2px 2px #fff4; 
+      }
+
+      #search-btn {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        height: 100%;
+        padding: 0 2.5rem;
+        color: #fff;
+        font-size: 1rem;
+        outline: none;
+        border: 2px solid transparent;
+        background-color: #152f5d;
+        transition: all 400ms ease;
+        cursor: pointer;
+      }
+      #search-btn:hover {
+        color: #fff;
+        border: 2px solid #fff;
+        background-color: #ce1b41;
+      }
+
+      .right-nav {
+        padding: 0 1rem;
+        display: flex;
+      }
+
+      .right-nav ul {
+        margin: auto;
+      }
+      
+      .right-nav ul li {
+        width: 2rem;
+        display: block;
+        margin: 1rem 0;
+      }
+
+      .right-nav a {
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 500;
+        writing-mode: sideways-rl;
+        transition: color 400ms ease;
+      }
+      .right-nav a:hover {
+        color: #ce1b41;
+      }
+
+      @media (max-width: 58rem) {
+        #menu-btn {
+          display: block;
+        }
+        .navlist {
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          padding: 1.24rem 0 2rem;
+          flex-direction: column;
+          text-align: center;
+          background-color: #152f5d;
+          transform: translateY(-100%);
+          transition: top 400ms ease, 
+                transform 400ms ease;
+          z-index: -1;
+        }
+        .navlist::before {
+          position: absolute;
+          left: 0;
+          bottom: 100%;
+          content: "";
+          width: 100%;
+          height: 100%;
+          border-bottom: 1px solid #fff4;
+          background-color: #152f5d;
+        }
+
+        .navlist.open {
+          top: 100%;
+          transform: translateY(0);
+        }
+
+        .navlist li {
+          margin: 0.5rem 0;
+        }
+
+        .navlist a {
+          display: inline-block;
+          margin: 0.5rem;
+          padding: 0.25rem;
+        }
+      }
+
+      @media (max-aspect-ratio: 1.57/1) {
+        .home-btn {
+          border: 2px solid #152f5d;
+          background-color: #152f5d;
+        }
+      }
+
+      @media (max-width: 39.5rem) {
+        .home-btn {
+          border: 2px solid #152f5d;
+          background-color: #152f5d;
+        }
+      }
+
+      @media (max-width: 25rem) {
+        .searchbar {
+          text-align: center;
+        }
+        #search-field {
+          width: 100%;
+          padding: 1em 1.5em;
+        }
+        #search-btn {
+          position: initial;
+          display: inline-block;
+          margin-top: 0.5rem;
+          padding: 0.6rem 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+
+      <a href="#" class="logo">
+        braga<span>.</span>
+      </a>
+
+      <i id="menu-btn" class="fa fa-th-large"></i>
+
+      <ul class="navlist">
+        <li><a href="#">home</a></li>
+        <li><a href="#">shop</a></li>
+        <li><a href="#">blog</a></li>
+        <li><a href="#">about</a></li>
+        <li><a href="#">contact</a></li>
+        <li><a href="#">page</a></li>
+      </ul>
+
+      <a href="#" class="home-btn">shop now</a>
+
+    </header>
+
+    <main>
+      <section class="home">
+        <div class="home-text">
+          <h4>Big sale up to 20% off</h4>
+          <h1>This Black Nike <br> Black</h1>
+          <p>An Exclusive selection this season's trends <span>exclusively online</span></p>
+          <div class="searchbar">
+            <form>
+              <input type="search" name="search" id="search-field" placeholder="Search for products" required>
+              <input type="submit" value="Search" id="search-btn">
+            </form>
+          </div>
+        </div>
+      </section>
+      
+      <div class="right-nav">
+        <ul>
+          <li>
+            <a href="#">Facebook</a>
+          </li>
+          <li>
+            <a href="#">Upwork</a>
+          </li>
+          <li>
+            <a href="#">Fiverr</a>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const menu = document.querySelector(".navlist");
+
+      menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("open");
+        menu.classList.toggle("open");
+      })
+    </script>
+
+  </body>
+</html>
