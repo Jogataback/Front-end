@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nike</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      :root {
+        --main-color: #333333;
+        --second-color: #1d1d1d;
+        --other-color: #8e8e8e;
+        --text-color: #ffffff;
+        --bg-color: #111111;
+
+        --h1-font: min(6rem, calc(3rem + 6vw));
+        --p-font: 1.1rem;
+
+        --max-width: 100rem;
+      }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+      }
+
+      .landing-page {
+        position: relative;
+        width: 100%;
+        max-width: var(--max-width);
+        margin: auto;
+        border: 1px solid #fff4;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      header {
+        position: relative;
+        background-color: var(--bg-color);
+        z-index: 2;
+      }
+
+      .header {
+        width: 96%;
+        max-width: var(--max-width);
+        margin: auto;
+        padding: 1rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        /* transition: all 600ms ease; */
+      }
+
+      .navbar {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+      }
+
+      .navbar a {
+        margin: 0 2rem;
+        padding: 0.3em;
+        color: var(--other-color);
+        font-size: var(--p-font);
+        font-weight: 400;
+        text-transform: uppercase;
+        border-bottom: 2px solid transparent;
+        transition: color 500ms ease, 
+            border-color 500ms ease;
+      }
+      .navbar a:hover {
+        color: var(--text-color);
+        border-bottom: 2px solid var(--text-color);
+      }
+
+      .right-nav-panel {
+        display: flex;
+        align-items: center;
+      }
+
+      .right-nav-panel i {
+        padding: 0.5em;
+        color: var(--other-color);
+        font-size: 1.25rem;
+        border-radius: 10px;
+        background-color: var(--main-color);
+        transition: color 500ms ease, 
+        background-color 500ms ease;
+      }
+      .right-nav-panel i:hover {
+        color: var(--text-color);
+        background-color: var(--second-color);
+      }
+      .right-nav-panel a i {
+        margin: 0 0.625rem;
+      }
+
+      #menu-btn {
+        margin-left: 0.625rem;
+        display: none;
+        color: var(--other-color);
+        border-radius: 10px;
+        border: 1px solid var(--other-color);
+        background-color: var(--main-color);
+        cursor: pointer;
+      }
+      #menu-btn:hover {
+        color: var(--text-color);
+        background-color: var(--second-color);
+      }
+      #menu-btn i {
+        padding: 10px 12px;
+        font-size: calc(1rem + 2vw);
+      }
+
+      main {
+        padding-top: 3rem;
+        display: flex;
+        background-image: url("./img/bg.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+
+      .hero-section {
+        position: relative;
+        width: 96%;
+        margin: auto;
+        display: grid;
+        gap: 0.65rem;
+        align-items: center;
+        grid-template-columns: auto 2fr 1fr;
+      }
+
+      .hero-img img {
+        display: block;
+        width: 90%;
+        max-width: 46.875rem;
+        min-height: 43.75rem;
+        object-fit: contain;
+        margin: auto;
+        transform: scale(1) rotate(-15deg);
+      }
+
+      .hero-text h1 {
+        margin-bottom: 1rem;
+        font-size: var(--h1-font);
+        text-transform: uppercase;
+        line-height: 1.1;
+      }
+      .hero-text p {
+        max-width: 31.25rem;
+        margin-bottom: 1.25rem;
+        color: var(--other-color);
+        font-size: var(--p-font);
+        line-height: 1.7;
+      }
+      .hero-text h5 {
+        margin-bottom: 2.2rem;
+        font-size: 2.3rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        font-family: Georgia, serif;
+      }
+
+      .btn {
+        margin-right: 1.25rem;
+        padding: 0.8em 1.75em;
+        color: var(--text-color);
+        font-size: 1.25rem;
+        text-transform: capitalize;
+        border-radius: 10px;
+        background-color: var(--main-color);
+        transition: color 500ms ease, 
+        background-color 500ms ease;
+      }
+      .btn:hover {
+        color: var(--bg-color);
+        background-color: var(--text-color);
+      }
+
+      .btn-alt {
+        color: var(--text-color);
+        font-size: 1.25rem;
+        text-transform: capitalize;
+        border-bottom: 2px solid var(--text-color);
+        transition: transform 500ms ease;
+      }
+      .btn-alt:hover {
+        transform: scale(1.1) translateX(6px);
+      }
+
+      .thumbs {
+        display: flex;
+        gap: min(4vw, 3rem);
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .thumb {
+        width: min(5.625rem, 10vw);
+        min-width: 3rem;
+        height: min(5.625rem, 10vw);
+        min-height: 3rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 1px solid var(--main-color);
+        background-color: var(--second-color);
+        transition: transform 400ms ease, 
+              background-color 400ms ease;
+        cursor: pointer;
+      }
+      .thumb:hover {
+        transform: translateY(-7px);
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .scroll {
+        position: fixed;
+        top: 100%;
+        right: 0;
+        transform: translate(-100%, -200%);
+        z-index: 3;
+      }
+      .scroll i {
+        padding: 0.9em;
+        color: var(--text-color);
+        font-size: min(2vw, 1.25rem);
+        border-radius: 2rem;
+        background-color: var(--main-color);
+        transition: all 500ms ease;
+      }
+      .scroll i {
+        color: var(--bg-color);
+        background-color: var(--text-color);
+      }
+
+      @media screen and (max-width: 100rem) {
+        .landing-page {
+          border-radius: 0;
+          border: 0px solid #fff4;
+        }
+      }
+
+      @media screen and (max-width: 87.5rem) {
+        .hero-section {
+          grid-template-columns: auto 1fr;
+          grid-template-rows: auto 1fr;
+        }
+        .hero-img img {
+          min-height: auto;
+        }
+        .hero-text {
+          grid-column: 1 / -1;
+          padding: 3rem 0;
+          text-align: center;
+        }
+        .hero-text p {
+          margin: auto;
+        }
+      }
+
+      @media screen and (max-width: 56.25rem) {
+        .header {
+          width: auto;
+          padding: 1rem 2vw;
+        }
+        .navbar {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          padding: 1rem 2vw;
+          display: initial;
+          text-align: center;
+          transform: translateY(-100%);
+          backdrop-filter: blur(30px);
+          transition: transform 500ms ease;
+          z-index: -1;
+        }
+        .navbar.active {
+          transform: translateY(0);
+        }
+        .navbar li {
+          margin: 1rem 0;
+        }
+        .navbar a {
+          margin: 0;
+          padding: 0.7em;
+        }
+        #menu-btn {
+          display: inline-block;
+        }
+      }
+
+      @media screen and (max-width: 28.75rem) {
+        body {
+          min-width: fit-content;
+        }
+        .hero-section {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+        }
+        .hero-text h1 {
+          font-size: calc(2rem + 5vw);
+        }
+        .thumbs {
+          flex-direction: row;
+          justify-content: center;
+        }
+      }
+
+      .zoom-in {
+        animation: zoom-in 2s linear forwards;
+      }
+      @keyframes zoom-in {
+        0% {
+          transform: scale(0) rotate(-15deg);
+        }
+      }
+
+      .zoom-left {
+        display: inline-block;
+        margin-right: auto;
+        animation: zoom-left 2s linear forwards;
+      }
+      @keyframes zoom-left {
+        0% {
+          transform: scale(0);
+          transform-origin: right;
+        }
+      }
+
+      .show-right {
+        animation: show-right 2s linear forwards;
+      }
+      @keyframes show-right {
+        0% {
+          transform: translateX(-30%);
+        }
+      }
+
+      .scale {
+        animation: scale 2s linear forwards;
+      }
+      @keyframes scale {
+        0% {
+          transform: scaleY(0);
+        }
+      }
+
+      .opacity {
+        animation: opacity 2s linear both;
+      }
+      @keyframes opacity {
+        0% {
+          opacity: 0;
+        }
+      }
+
+      .fade-up {
+        animation: fade-up 2s linear both, 
+                    opacity 2s linear both;
+        animation-delay: calc(1s + var(--delay) * 0.4s);
+      }
+      @keyframes fade-up {
+        0% {
+          transform: translateY(50%);
+        }
+      }
+
+      .fade-right {
+        animation: opacity 2s linear both, 
+                show-right 2s linear both;
+        animation-delay: calc(1s + var(--delay) * 0.4s);
+      }
+
+      .scaled {
+        transform: scaleX(107%);
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="landing-page">
+
+      <header>
+        <div class="header">
+          <a href="#logo" class="logo">
+            <img src="./img/logo.png" alt="Nike Logo">
+          </a>
+          <ul class="navbar">
+            <li><a href="#">men</a></li>
+            <li><a href="#">women</a></li>
+            <li><a href="#">kids</a></li>
+            <li><a href="#">sale</a></li>
+            <li><a href="#">snkrs</a></li>
+          </ul>
+          <div class="right-nav-panel">
+            <a href="#search"><i class="fa fa-search"></i></a>
+            <a href="#cart"><i class="fa fa-shopping-cart"></i></a>
+            <button id="menu-btn"><i class="fa fa-bars"></i></button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero-section">
+
+          <ul class="thumbs">
+            <li class="thumb fade-right" style="--delay: 1">
+              <a href="#"><img src="./img/thumb-1.png" alt=""></a>
+            </li>
+            <li class="thumb fade-right" style="--delay: 2">
+              <a href="#"><img src="./img/thumb-2.png" alt=""></a>
+            </li>
+            <li class="thumb fade-right" style="--delay: 3">
+              <a href="#"><img src="./img/thumb-3.png" alt=""></a>
+            </li>
+          </ul>
+
+          <div class="hero-img">
+            <!-- <img src="./img/test1 (1).png" alt="" class="zoom-in"> -->
+            <!-- <img src="./img/test1 (2).png" alt="" class="zoom-in"> -->
+            <!-- <img src="./img/test1 (3).png" alt="" class="zoom-in"> -->
+            <img src="./img/hero-1.png" alt="" class="zoom-in">
+            <!-- <img src="./img/air-zoom-long-jump-elite-athletics-jumping-spikes-gvPvGl.webp" alt="" class="zoom-in"> -->
+          </div>
+
+          <div class="hero-text">
+            <h1 class="show-right">Nike Air Dunk-270</h1>
+            <p class="scale">
+              Nike's 1st Lifestyle Air Max returns with a vibrant color gradient that's sure to turn heads.
+            </p>
+            <h5 class="zoom-left">$240.00</h5>
+            <div class="hero-btn">
+              <a href="#" class="btn fade-up" style="--delay: 1">add to bag</a>
+              <a href="#" class="btn-alt fade-up" style="--delay: 2">view details</a>
+            </div>
+          </div>
+
+        </section>
+      </main>
+      
+      <a href="#top" class="scroll">
+        <i class="fa fa-home"></i>
+      </a>
+      
+    </div>
+
+    <script>
+      const products = [
+        {
+          src: "./img/hero-1.png"
+        }, 
+        {
+          src: "./img/hero-2.png"
+        }, 
+        {
+          src: "./img/hero-3.png"
+        }
+      ]
+
+      const heroImage = document.querySelector(".hero-img img");
+
+      const thumbs = document.querySelectorAll(".thumb");
+      thumbs.forEach((thumb, index) => {
+        thumb.addEventListener("click", () => {
+          changeImage(products[index].src);
+        })
+      })
+
+      thumbs[0].addEventListener("click", () => {
+        heroImage.classList.remove("scaled")
+      });
+      thumbs[1].addEventListener("click", () => {
+        heroImage.classList.remove("scaled");
+      });
+      thumbs[2].addEventListener("click", () => {
+        heroImage.classList.add("scaled");
+      });
+
+      function changeImage(url) {
+        heroImage.src = url;
+      }
+
+      const menuBtn = document.getElementById("menu-btn");
+      const nav = document.querySelector(".navbar");
+      menuBtn.addEventListener("click", () => {
+        const icon = menuBtn.querySelector("i");
+        icon.classList.toggle("fa-bars");
+        icon.classList.toggle("fa-times");
+        nav.classList.toggle("active");
+      })
+    </script>
+    
+  </body>
+</html>
