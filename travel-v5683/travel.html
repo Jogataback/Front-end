@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      /* @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courgette&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Josefin+Sans:wght@300;400;600&family=Limelight&family=Lobster&family=Montserrat:wght@300;400;600&family=Oleo+Script+Swash+Caps:wght@400;700&family=Poppins:wght@300;400;700;800&family=Raleway:ital,wght@0,400;1,300;1,600&display=swap'); */
+      /* @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&family=Kaushan+Script&family=Playfair+Display&display=swap'); */
+      @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Brawler:wght@400;700&family=Croissant+One&family=Ephesis&family=Gloock&family=Hurricane&family=Imbue:opsz,wght@10..100,100..900&family=Modak&family=Montez&family=Prosto+One&family=Rye&family=Shojumaru&family=Young+Serif&family=ZCOOL+XiaoWei&display=swap');
+            
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --main-color: #335463;
+        --text-color: #333;
+        --white-color: #fff;
+        --bg-color: #0c0c0c;
+        --p-font: 1rem;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      a {
+        display: inline-block;
+        color: var(--text-color);
+        text-decoration: none;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        padding: 3rem;
+        color: var(--text-color);
+        font-family: "Platypi", serif;
+      }
+
+      .page {
+        position: relative;
+        max-width: 100rem;
+        margin: auto;
+        border-radius: 16px;
+        box-shadow: 
+          3px 3px 6px #0005, 
+          -3px -3px 6px #fff2;
+        overflow: hidden;
+      }
+
+      header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: min(1vw, 2rem) 0;
+        z-index: 2;
+      }
+
+      .logo {
+        color: var(--main-color);
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-transform: capitalize;
+        font-family: "Hurricane", cursive;
+        animation: load 1s 0.2s linear backwards;
+        z-index: 2;
+      }
+      .logo i {
+        color: var(--white-color);
+        font-size: 2rem;
+        border-radius: 50%;
+        border: 1px solid var(--main-color);
+        background-color: var(--main-color);
+      }
+
+      nav {
+        width: 94%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .navlist {
+        margin-left: auto;
+      }
+
+      .navlist li {
+        position: relative;
+        display: inline-block;
+        margin: 0 1.2rem;
+        padding: 0.4rem 0;
+        animation: fade-down 1s linear backwards;
+        animation-delay: calc(0.2s * var(--delay));
+      }
+      .navlist li::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 2px;
+        background-color: var(--white-color);
+        transform-origin: left;
+        transform: scaleX(0);
+        transition: transform 0.4s ease-in-out;
+      }
+      .navlist li:hover::before {
+        transform: scale(1);
+      }
+
+      .navlist a {
+        padding: 0.4em;
+        color: var(--white-color);
+        font-size: var(--p-font);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+
+      .toggle {
+        display: none;
+        z-index: 2;
+      }
+
+      #menu-btn {
+        margin-left: 1.5rem;
+        color: var(--white-color);
+        font-size: 1.5rem;
+        border-radius: 6px;
+        border: 2px solid var(--white-color);
+        background-color: transparent;
+        transition: color 600ms ease, 
+            border-color 600ms ease,
+        background-color 600ms ease;
+        cursor: pointer;
+      }
+      #menu-btn:hover {
+        color: var(--main-color);
+        border-color: var(--main-color);
+        background-color: var(--white-color);
+      }
+      #menu-btn i {
+        padding: 0.2em 0.266em;
+      }
+
+      .hero-section {
+        width: 94%;
+        margin-left: auto;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .hero-text {
+        max-width: 40.6rem;
+        margin-top: 3rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 1;
+      }
+
+      .hero-text h1 {
+        font-size: min(5rem, calc(2rem + 8vw));
+        font-weight: 600;
+        font-family: "Arizonia", cursive;
+        letter-spacing: 3px;
+        text-transform: capitalize;
+        animation: fade-down 1s 1.4s linear backwards;
+      }
+      .hero-text h1 span {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 5px;
+        font-weight: 600;
+        word-spacing: 2px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-family: "Platypi", serif;
+        animation: fade-down 1s 1s linear backwards;
+      }
+
+      .hero-text p {
+        margin-top: 1.6rem;
+        margin-bottom: 1.4rem;
+        font-size: var(--p-font);
+        letter-spacing: 2px;
+        animation: fade-down 1s 1.8s linear backwards;
+      }
+
+      .btn {
+        align-self: flex-start;
+        padding: 0.75em 2em;
+        color: var(--white-color);
+        font-size: var(--p-font);
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border: 1px solid var(--main-color);
+        border-radius: 6px;
+        outline: none;
+        background-color: var(--main-color);
+        box-shadow: 3px 3px 3px transparent;
+        transition: color 600ms ease, 
+              box-shadow 600ms ease, 
+        background-color 600ms ease;
+        animation: fade-down 1s 2.2s linear backwards;
+      }
+      .btn:hover {
+        color: var(--main-color);
+        background-color: var(--white-color);
+        box-shadow: 3px 3px 3px var(--main-color);
+      }
+
+      .hero-img {
+        position: relative;
+        width: 100%;
+        animation: fade-in 1s 500ms linear backwards;
+      }
+      .hero-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @keyframes fade-down {
+        0% {
+          transform: translateY(-15px);
+          opacity: 0;
+        }
+      }
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 100rem) {
+        body {
+          padding: 0;
+        }
+        .page {
+          width: 100%;
+          min-height: 100vh;
+          border-radius: 0;
+        }
+        .hero-section {
+          width: 100%;
+          flex-direction: column-reverse;
+        }
+        .hero-img {
+          height: 50vh;
+          min-height: 13rem;
+        }
+        .hero-img::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: "";
+          width: 100%;
+          height: 200%;
+          background: 
+            linear-gradient(
+              transparent, #fff7, #fff
+            );
+        }
+        .hero-img img {
+          height: 200%;
+        }
+        .hero-text {
+          position: relative;
+          width: 94%;
+          margin: 3rem auto 5rem;
+          text-align: center;
+        }
+        .btn {
+          margin: auto;
+        }
+      }
+
+      @media (max-width: 56.25rem) {
+        header {
+          padding: 1vw 0;
+          background: 
+            linear-gradient(
+            #fff, transparent
+            );
+        }
+        header::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: "";
+          width: 100%;
+          height: 100%;
+          min-height: 50vh;
+          background: 
+            linear-gradient(
+            #fff, transparent
+            );
+        }
+        .navlist {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          width: 100%;
+          min-height: 100vh;
+          padding: 3rem 0;
+          border-top: 1px solid #2f2d2d;
+          border-bottom: 1px solid #393737;
+          background-color: var(--white-color);
+          transform-origin: top;
+          transform: scaleY(0);
+          z-index: 1;
+        }
+        .navlist.open {
+          transform: scale(1);
+          transition: transform 500ms ease-in-out;
+        }
+        .navlist::before {
+          position: absolute;
+          bottom: 100%;
+          left: 0;
+          content: "";
+          width: 100%;
+          height: 100vh;
+          background-color: transparent;
+        }
+        .navlist.open::before {
+          background-color: var(--white-color);
+        }
+        .logo {
+          font-size: 1.5rem;
+        }
+        .logo i {
+          font-size: 1rem;
+        }
+        .navlist li {
+          display: none;
+          width: 90%;
+          margin: auto;
+        }
+        .navlist.open li {
+          display: block;
+          animation: fade-down 0.8s linear backwards;
+          animation-delay: calc(0.5s * var(--delay));
+        }
+        nav ul li::before {
+          content: none;
+        }
+        .navlist a {
+          color: #000;
+        }
+        .toggle {
+          display: initial;
+        }
+        #menu-btn {
+          color: var(--main-color);
+          font-size: 1rem;
+          border: 2px solid var(--main-color);
+        }
+        .hero-img img {
+          width: 140%;
+          transform: translateX(-20%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="page">
+
+      <header>
+        <nav>
+          <a href="#" class="logo">
+            <i class="fa fa-safari"></i>
+            travel
+          </a>
+
+          <ul class="navlist">
+            <li style="--delay: 1"><a href="#">home</a></li>
+            <li style="--delay: 2"><a href="#">about</a></li>
+            <li style="--delay: 3"><a href="#">skills</a></li>
+            <li style="--delay: 4"><a href="#">contact</a></li>
+          </ul>
+
+          <div class="toggle">
+            <button id="menu-btn">
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <section class="hero-section">
+        <div class="hero-text">
+          <h1><span>let's go on</span> adventure</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quasi corrupti temporibus sed quis, distinctio nesciunt facere possimus. Fugiat nobis illum rem neque officia nostrum.</p>
+          <a href="#" class="btn">let's start</a>
+        </div>
+        <div class="hero-img image">
+          <img src="./images/hero-img.png" alt="">
+        </div>
+      </section>
+
+    </div> 
+
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const menuBtnIcon = document.querySelector("#menu-btn i");
+      const nav = document.querySelector(".navlist");
+
+      menuBtn.addEventListener("click", () => {
+        menuBtnIcon.classList.toggle("fa-bars");
+        menuBtnIcon.classList.toggle("fa-times");
+        nav.classList.toggle("open");
+      })
+    </script>
+    
+  </body>
+</html>
