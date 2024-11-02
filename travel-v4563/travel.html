@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <title>URLSearchParams in JS</title> -->
+    <title>Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      a {
+        text-transform: capitalize;
+        text-decoration: none;
+      }
+
+      button {
+        padding: 0.4em 1em;
+        border: none;
+        outline: none;
+        font-family: Georgia, serif;
+        text-transform: capitalize;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      button:focus-within {
+        outline: 1px solid #fff8;
+      }
+
+      a, button {
+        transition: color 500ms ease-in-out;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: 'Redressed', cursive;
+      }
+      
+      .page {
+        position: relative;
+        min-height: 100vh;
+        padding: 2%;
+        display: flex;
+        overflow: hidden;
+      }
+      .page::after {
+        position: absolute;
+        top: 0;
+        left: -20%;
+        content: "";
+        width: 120%;
+        height: 100%;
+        background-image: url("./hero.webp");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        animation: leftright 60s linear infinite;
+        z-index: -2;
+      }
+      @keyframes leftright {
+        50% {
+          transform: translateX(16%);
+        }
+      }
+      .page::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: -1;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 100rem;
+        min-height: min(56.25rem, 90vh);
+        margin: auto;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .nav {
+        padding: 0 4%;
+        display: flex;
+        row-gap: 0.5rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .logo {
+        width: 6.25rem;
+      }
+
+      .menu li {
+        display: inline-block;
+        margin: 0 0.6rem;
+      }
+      .menu a {
+        display: inline-block;
+        padding: 0.4em 1em;
+        color: #000;
+        font-size: 1.25rem;
+      }
+      .menu a:hover {
+        color: #fff;
+        text-shadow: 1px 1px 1px #000;
+      }
+
+      .nav button {
+        margin: 0.6rem;
+        color: #fff;
+        font-size: 1.25rem;
+        border: 2px solid #fff;
+        border-radius: 20px;
+        background-color: rgba(0, 0, 0, 0.6);
+        transition: all .5s ease-in-out;
+      }
+      .nav button:hover {
+        color: #000;
+        border: 2px solid #d2b496;
+        background-color: #d2b496;
+        filter: drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #fff5);
+      }
+      .nav button:focus-visible {
+        outline: 1px solid #000;
+      }
+      .nav button:focus {
+        outline: 1px solid transparent;
+      }
+
+      .bars {
+        display: none;
+      }
+      .bars button {
+        font-size: 0px;
+        border-radius: 0.5rem;
+      }
+      .bars button i {
+        font-size: 1.25rem;
+        padding: 0.55em 0.6em 0.45em;
+      }
+
+      @media screen and (max-width: 650px) {
+        .menu {
+          display: none;
+        }
+        .bars {
+          display: block;
+        }
+      }
+
+      .main-container {
+        min-height: 28rem;
+        padding-top: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        flex-direction: column;
+      }
+
+      h1 {
+        width: 60%;
+        margin-top: 1.9rem;
+        color: #fff;
+        font-size: 2.2rem;
+        text-align: center;
+      }
+      .main-container p {
+        margin-bottom: 2.5rem;
+        color: #fff;
+        font-size: 1.25rem;
+        text-align: center;
+      }
+      .main-container button {
+        padding: 0.5em 1em;
+        color: #fff;
+        font-size: 1.25rem;
+        border: 2px solid #fff;
+        border-radius: 1.25rem;
+        background-color: rgba(0, 0, 0, 0.6);
+        transition: all 500ms ease-in-out;
+      }
+      .main-container button:hover {
+        color: #000;
+        border: 2px solid #d2b496;
+        background-color: #d2b496;
+        filter: drop-shadow(1px 1px 1px #000) 
+            drop-shadow(-1px -1px 1px #fff5);
+      }
+
+      .form {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0.6rem;
+        display: none;
+      }
+      .form.visible {
+        display: flex;
+      }
+
+      .form-container {
+        width: 26.25rem;
+        min-height: 28rem;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(30px);
+      }
+      .form-main {
+        width: 100%;
+        margin: auto;
+        padding: 0 10% 10%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .form-container .top {
+        padding: 3% 3% 0;
+        text-align: right;
+      }
+      #close-form {
+        padding: 0;
+        border-radius: 8px;
+      }
+      #close-form i {
+        padding: 0.1em 0.26em 0.18em;
+        color: transparent;
+        font-size: 1.9rem;
+        -webkit-text-stroke: 3px #ed7140;
+      }
+      #close-form:hover i {
+        color: #ed7140;
+        -webkit-text-stroke: 16px transparent;
+      }
+
+      .form-title {
+        font-size: 50px;
+        text-transform: capitalize;
+      }
+      .email, 
+      .password {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      label {
+        margin-bottom: 5px;
+        color: #fff;
+        text-transform: capitalize;
+      }
+
+      .email label {
+        margin-top: 20px;
+      }
+      input {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 15px 20px;
+        color: #fff;
+        outline: 1px solid transparent;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 2em;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      input:focus-visible {
+        outline: 1px solid #fff;
+        background-color: transparent;
+      }
+
+      .form-main span {
+        color: #fff;
+      }
+      .form-main a {
+        margin-bottom: 15px;
+        color: #ed7140;
+      }
+      .form-main a:hover {
+        color: #ed714094;
+      }
+
+      #login {
+        margin-top: 25px;
+        color: #fff;
+        font-size: 20px;
+        border: 2px solid #ed7140;
+        border-radius: 20px;
+        background-color: #ed7140;
+        transition-property: border-color;
+      }
+      #login:hover {
+        box-shadow: 
+          inset 1px 1px 1px #000, 
+          inset -1px -1px 1px #fff;
+      }
+      #login:active {
+        box-shadow: 
+          inset 1px 2px 1px #000, 
+          inset -2px -2px 1px #fff9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="container">
+        <div class="nav">
+          <a href="#logo" class="logo">
+            <img src="./logo.png" alt="">
+          </a>
+          <ul class="menu" id="menu">
+            <li><a href="#">home</a></li>
+            <li><a href="#">about</a></li>
+            <li><a href="#">camp</a></li>
+            <li><a href="#">contact us</a></li>
+          </ul>
+          <button id="sign-up">sign up</button>
+          <div class="bars" id="bars">
+            <button>menu
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </div>
+        <div class="form visible">
+          <div class="form-container">
+            <div class="top">
+              <button id="close-form">
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+            <div class="form-main">
+              <span class="form-title">login</span>
+              <div class="email">
+                <label for="email">email</label>
+                <input type="email" name="email" id="email" placeholder="Write Your Email...">
+              </div>
+              <div class="password">
+                <label for="password">password</label>
+                <input type="password" name="password" id="password" placeholder="Write Your Password...">
+              </div>
+              <a href="#">forgot password?</a>
+              <span>Don't Have an Account? <a href="#">sign up</a></span>
+              <button id="login">login</button>
+            </div>
+          </div>
+        </div>
+        <div class="main-container">
+          <h1>Discover hundreds of travel destinations...!</h1>
+          <p>Plan and book your trip in just a few steps, travel tips, destinations's information and inspiration from us.</p>
+          <button>discover now</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const closeFormBtn = document.getElementById("close-form");
+      const form = document.querySelector(".form");
+
+      closeFormBtn.addEventListener("click", () => {
+        form.classList.remove("visible");
+      })
+    </script>
+  </body>
+</html>
