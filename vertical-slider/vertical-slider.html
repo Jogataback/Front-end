@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <title>URLSearchParams in JS</title> -->
+    <title>Vertical Mask Slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0%;
+      box-sizing: border-box;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Georgia, serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+
+    .page {
+      /* display: flex; */
+      display: grid;
+      grid-template-columns: 60px 1fr;
+    }
+
+    .mask {
+      /* position: absolute !important; */
+      /* width: 100%; */
+      /* height: 100% !important; */
+      /* min-height: unset !important; */
+      /* z-index: 2; */
+    }
+    .mask {
+      /* display: none; */
+      /* position: fixed; */
+      position: relative;
+      width: 50%;
+      height: 100vh;
+      min-height: max(700px, 50vw);
+      margin-left: auto;
+      /* top: 0; */
+      /* left: 0; */
+      /* aspect-ratio: 1 / 2; */
+      /* background-color: white; */
+      /* mix-blend-mode: screen; */
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .mask img {
+      /* display: block; */
+      /* width: 100%; */
+      height: 100vh;
+      min-height: max(700px, 50vw);
+      /* object-fit: cover; */
+      /* object-position: top; */
+      /* margin-left: auto; */
+    }
+
+    .slides {
+      grid-column: 2 /3;
+      min-height: max(700px, 50vw);
+      height: 100vh;
+      /* scroll-snap-type: y mandatory; */
+      /* overflow: hidden; */
+    }
+    .slides > div {
+      position: relative;
+      scroll-snap-align: start;
+      /* overflow: hidden; */
+    }
+
+    .slides > div > img {
+      width: 100%;
+      height: 100vh;
+      min-height: max(700px, 50vw);
+      object-fit: cover;
+      object-position: left;
+      transform: translateX(0) rotateY(180deg);
+      animation: move 30s linear infinite;
+    }
+
+    @keyframes move {
+      50% {
+        transform: translateX(10%) rotateY(180deg);
+      }
+    }
+
+    /* ul {
+      position: fixed;
+      top: 0;
+      z-index: 3;
+    } */
+
+    ul {
+      position: fixed;
+      align-self: center;
+      z-index: 3;
+    }
+
+    ul a {
+      display: block;
+      margin: 10px;
+      font-size: 0px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    ul a img {
+      /* width: 100%; */
+      width: auto;
+      height: 100%;
+    }
+
+    .slides .text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 50%;
+      height: 100%;
+      display: grid;
+      /* align-items: center; */
+      /* flex-direction: column; */
+      text-align: center;
+      /* border: 1px solid red; */
+      z-index: 2;
+    }
+    .text span {
+      margin-top: auto;
+      font-size: min(8rem, 4vw);
+      text-transform: capitalize;
+    }
+    .text h2 {
+      font-size: min(12rem, 5vw);
+      /* font-style: italic; */
+      text-transform: uppercase;
+      color: white;
+      /* -webkit-text-stroke: 1px whitesmoke; */
+      /* text-shadow: 1px 1px 1px #000; */
+      filter: drop-shadow(1px 1px 1px #000);
+    }
+    #pic-1 .text span {
+      color: red;
+    }
+    #pic-2 .text span {
+      color: #e9ab32;
+    }
+    #pic-3 .text span {
+      color: #598fe1;
+    }
+
+    .slide-image {
+      width: 130%;
+      object-fit: cover;
+      object-position: center;
+      transform: translateX(-20%) rotateY(180deg);
+      animation: move 30s linear infinite;
+    }
+    @keyframes move {
+      50% {
+        transform: translateX(-5%) rotateY(180deg);
+      }
+    }
+    .mask-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      object-position: center;
+      background-color: white;
+      mix-blend-mode: screen;
+    }
+
+    @media screen and (max-width: 900px) {
+      .mask {
+        width: 100%;
+      }
+      .text {
+        width: 100%;
+        text-shadow: 1px 1px 1px #000;
+      }
+      .text span {
+        font-size: min(4rem, 1rem + 5vw);
+      }
+      .text h2 {
+        color: white;
+        font-size: min(6rem, 1rem + 8vw);
+      }
+    }
+    @media screen and (max-width: 740px) {
+      .page {
+        display: block;
+      }
+      ul {
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+      }
+      ul a {
+        display: inline-block;
+        filter: drop-shadow(0px 0px 4px #fff);
+      }
+    }
+  </style>
+  <body>
+    <!-- <div class="mask">
+      <img src="./slides/mask.png">
+    </div> -->
+    <div class="page">
+      <ul>
+        <a href="#pic-1">slide-1
+          <img src="./slides/children-1807511.jpg" alt="">
+        </a>
+        <a href="#pic-2">slide-2
+          <img src="./slides/adult-1807548.jpg" alt="">
+        </a>
+        <a href="#pic-3">slide-3
+          <img src="./slides/asia-1793425.jpg" alt="">
+        </a>
+      </ul>
+      <div class="slides">
+        <div id="pic-1">
+          <div class="mask">
+            <img src="./slides/children-1807511.jpg" alt="" class="slide-image">
+            <img src="./slides/mask.png" class="mask-image">
+          </div>    
+          <div class="text">
+            <span>slide 1</span>
+            <h2>children</h2>
+          </div>
+        </div>
+        <div id="pic-2">
+          <div class="mask">
+            <img src="./slides/adult-1807548.jpg" alt="" class="slide-image">
+            <img src="./slides/mask.png" class="mask-image">
+          </div>    
+          <div class="text">
+            <span>slide 2</span>
+            <h2>adults</h2>
+          </div>
+        </div>
+        <div id="pic-3">
+          <div class="mask">
+            <img src="./slides/asia-1793425.jpg" alt="" class="slide-image">
+            <img src="./slides/mask.png" class="mask-image">
+          </div>    
+          <div class="text">
+            <span>slide 3</span>
+            <h2>elders</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
