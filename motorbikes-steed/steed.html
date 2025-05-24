@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STEED</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+      @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courgette&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Josefin+Sans:wght@300;400;600&family=Limelight&family=Lobster&family=Montserrat:wght@300;400;600&family=Oleo+Script+Swash+Caps:wght@400;700&family=Poppins:wght@300;400;700;800&family=Raleway:ital,wght@0,400;1,300;1,600&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&family=Kaushan+Script&family=Playfair+Display&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Brawler:wght@400;700&family=Croissant+One&family=Ephesis&family=Gloock&family=Hurricane&family=Imbue:opsz,wght@10..100,100..900&family=Modak&family=Montez&family=Prosto+One&family=Rye&family=Shojumaru&family=Young+Serif&family=ZCOOL+XiaoWei&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Lora:ital@0;1&family=Poppins:wght@400;500;600&display=swap");
+      
+    
+      :root {
+        --primary-color: #f0a13a;
+        --background-color: #0d0d0d;
+        --header-background-color: #080808;
+        --text-light: #767268;
+        --white: #ffffff;
+        --header-font: "Roboto Condensed", sans-serif;
+        --max-width: 1200px;
+      }
+    
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+          
+      ul {
+        list-style: none;
+      }
+    
+      a {
+        display: inline-block;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      button {
+        font-family: inherit;
+        border: 0px solid transparent;
+        outline: 1px solid transparent;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      
+      button:focus-visible, 
+      a:focus-visible {
+        outline: 1px solid #999;
+      }
+        
+      img {
+        display: block;
+        width: 100%;
+      }
+        
+      html {
+        scroll-behavior: smooth;
+      }
+    
+      body {
+        font-family: Georgia, serif;
+        background-color: var(--background-color);
+      }
+
+      .page {
+        overflow-y: hidden;
+      }
+    
+      header {
+        background-color: var(--header-background-color);
+      }
+    
+      nav {
+        position: fixed;
+        width: 100%;
+        isolation: isolate;
+        z-index: 9;
+      }
+    
+      .nav-header {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--primary-color);
+      }
+    
+      .nav-logo a {
+        color: var(--white);
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-family: var(--header-font);
+        line-height: 1.5rem;
+      }
+    
+      #menu-btn {
+        color: var(--white);
+        font-size: 0;
+      }
+      #menu-btn i {
+        font-size: 1.5rem;
+      }
+    
+      .nav-links {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        transition: transform 0.5s;
+        z-index: -1;
+      }
+    
+      .nav-links.open {
+        transform: translateY(100%);
+      }
+    
+      .nav-links a {
+        color: var(--white);
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+      .nav-links a:hover {
+        color: var(--background-color);
+      }
+    
+      .nav-btns {
+        display: none;
+      }
+    
+      .section-container {
+        max-width: var(--max-width);
+        margin: auto;
+        padding: 5rem 1rem;
+      }
+    
+      .section-header {
+        color: var(--white);
+        font-size: 2rem;
+        font-weight: 600;
+        font-family: var(--header-font);
+        line-height: 2.75rem;
+      }
+    
+      .section-description {
+        color: var(--text-light);
+        font-size: 1rem;
+        line-height: 1.75rem;
+      }
+
+      .header-container {
+        position: relative;
+        padding-bottom: 0;
+        isolation: isolate;
+        overflow: hidden;
+      }
+      .header-container::before {
+        position: absolute;
+        content: "KING";
+        top: 0;
+        right: 1rem;
+        color: transparent;
+        font-size: 17rem;
+        font-weight: 600;
+        line-height: 25rem;
+        background-image: 
+          linear-gradient(
+            to top, 
+            var(--header-background-color), 
+            var(--white)
+        );
+        -webkit-text-stroke: 1px var(--white);
+        -webkit-background-clip: text;
+        background-clip: text;
+        opacity: 0.1;
+        z-index: -1;
+      }
+      .header-container::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 25%;
+        background-image: 
+          linear-gradient(
+            to top,
+            var(--header-background-color) 25%,
+            #ffffff00
+          );
+        z-index: 1;
+      }
+      
+      .header-container h1 {
+        max-width: 475px;
+        margin-bottom: 1rem;
+        color: var(--white);
+        font-size: 3rem;
+        font-weight: 700;
+        font-family: var(--header-font);
+        line-height: 3.75rem;
+      }
+      
+      .header-container .section-description {
+        max-width: 300px;
+        margin-bottom: 1rem;
+      }
+      
+      .header-container a {
+        padding: 0.8em 1.6em;
+        display: inline-flex;
+        gap: 0.75rem;
+        align-items: center;
+        color: var(--primary-color);
+        font-size: 1rem;
+        border-radius: 2em;
+        border: 1px solid var(--primary-color);
+      }
+      
+      .header-container a span {
+        color: var(--white);
+      }
+
+      .header-container a span i {
+        transform: rotate(45deg);
+      }
+      
+      .shop {
+        position: relative;
+        isolation: isolate;
+      }
+      
+      .shop::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5rem;
+        background-image: 
+          linear-gradient(
+            to bottom,
+            var(--header-background-color),
+            var(--background-color)
+        );
+      }
+      
+      .shop-container {
+        display: grid;
+        gap: 1rem;
+      }
+      
+      .shop-card {
+        position: relative;
+        width: 100%;
+        max-width: 380px;
+        margin: auto;
+        padding: 1rem;
+        border-radius: 1rem;
+        background-image: 
+          linear-gradient(
+            to bottom,
+            var(--header-background-color),
+            rgba(255, 255, 255, 0.1)
+        );
+        box-shadow: -1px -1px 1px var(--text-light), 
+          1px 1px 1px var(--header-background-color);
+        isolation: isolate;
+      }
+      .shop-card::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        color: transparent;
+        font-size: 15rem;
+        font-weight: 600;
+        line-height: 15rem;
+        background-image: 
+          linear-gradient(
+            to top,
+            var(--header-background-color),
+            var(--white)
+        );
+        -webkit-text-stroke: 1px var(--white);
+        -webkit-background-clip: text;
+        background-clip: text;
+        opacity: 0.1;
+        z-index: -1;
+      }
+      .shop-card:nth-child(1)::before {
+        content: "M";
+      }
+      .shop-card:nth-child(2)::before {
+        content: "A";
+      }
+      .shop-card:nth-child(3)::before {
+        content: "B";
+      }
+      
+      .shop-card p {
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+        font-size: 1rem;
+      }
+      
+      .shop-card h4 {
+        color: var(--white);
+        font-size: 1.2rem;
+        font-weight: 600;
+        font-family: var(--header-font);
+      }
+      
+      .shop-card img {
+        max-width: 200px;
+        margin-block: 4rem;
+        margin-inline: auto 0;
+      }
+      
+      .shop-card div {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .shop-card div a {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        color: var(--primary-color);
+        font-size: 1rem;
+      }
+      
+      .shop-card div a span {
+        color: var(--white);
+      }
+
+      .shop-card a span i {
+        transform: rotate(45deg);
+      }
+      
+      .shop-card div > span {
+        color: var(--text-light);
+      }
+
+      .about-container {
+        display: grid;
+        gap: 2rem;
+      }
+      
+      .about-image {
+        position: relative;
+        isolation: isolate;
+      }
+      .about-image::before {
+        position: absolute;
+        content: "ABOUT US";
+        top: 0;
+        left: 0;
+        right: 0;
+        color: transparent;
+        font-size: 15vw;
+        font-weight: 600;
+        white-space: nowrap;
+        text-align: center;
+        line-height: 15rem;
+        filter: drop-shadow(-1px -1px 1px #fff);
+        -webkit-text-stroke: 3px var(--background-color);
+        opacity: 0.2;
+        z-index: -1;
+      }
+
+      @media screen and (max-width: 1500px) {
+        .about-image::before {
+          transform: translateY(-50%);
+        }
+      }
+
+      @media screen and (min-width: 1500px) {
+        .about-image::before {
+          font-size: 15rem;
+        }
+      }
+
+      .about-image::after {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background-image: 
+          linear-gradient(
+            to top, 
+            var(--background-color), 
+            #ffffff00
+        );
+        z-index: 1;
+      }
+      
+      .about-image img {
+        max-width: 525px;
+        margin-inline: auto;
+      }
+
+      .about-content .section-header {
+        margin-bottom: 1rem;
+      }
+
+      .about-content .section-description {
+        margin-bottom: 1rem;
+      }
+      
+      .about-stats {
+        max-width: 350px;
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      .about-stats h4 {
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .about-stats p {
+        color: var(--text-light);
+      }
+      
+      .choose-container {
+        max-width: 1500px;
+        padding: 5rem 0;
+      }
+
+      .choose-header {
+        margin-bottom: 4rem;
+        display: grid;
+        gap: 1rem 2rem;
+      }
+      
+      .choose-header .section-header {
+        text-align: center;
+      }
+      
+      .choose-header p {
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .slider-track {
+        display: flex;
+        gap: 2%;
+        padding: 0 1rem;
+        scroll-behavior: smooth;
+        overflow: hidden;
+      }
+
+      .slider .control {
+        margin-top: 2rem;
+        text-align: center;
+      }
+    
+      .slider button {
+        color: var(--white);
+        font-size: 0px;
+        border-radius: 50%;
+        border: 1px solid black;
+        background-color: var(--text-dark);
+      }
+      button#prev {
+        padding: 0.45rem 0.5rem 0.45rem 0.7rem;
+      }
+      button#next {
+        padding: 0.45rem 0.7rem 0.45rem 0.5rem;
+      }
+    
+      .slider button i {
+        font-size: 2rem;
+      }
+
+      .slide {
+        max-width: 100%;
+        flex-shrink: 0;
+      }
+      
+      .choose-card {
+        display: flex;
+        border-radius: 1rem;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+      }
+      
+      .choose-card-content {
+        position: relative;
+        padding: 1.5rem;
+        background-color: var(--primary-color);
+      }
+
+      .choose-card-content {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .choose-card-content p {
+        margin-bottom: 1rem;
+        color: var(--background-color);
+        font-size: 1.5rem;
+        font-weight: 800;
+        font-family: var(--header-font);
+      }
+      
+      .choose-card-content a {
+        margin-bottom: 2rem;
+        color: var(--background-color);
+      }
+      .choose-card-content a span {
+        margin-left: 0.5rem;
+      }
+      .choose-card-content a span i {
+        transform: rotate(45deg);
+      }
+      
+      .choose-card-content h4 {
+        margin-top: auto;
+        color: var(--background-color);
+        font-size: 8rem;
+        font-weight: 800;
+        opacity: 0.5;
+      }
+
+      @media (width < 700px) {
+        .choose-card-content h4 {
+          font-size: 13vw;
+        }
+      }
+
+      .banner-container {
+        position: relative;
+        padding: 8rem 1rem;
+        text-align: center;
+        isolation: isolate;
+      }
+      .banner-container::before {
+        position: absolute;
+        content: "MON";
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        color: transparent;
+        font-size: 15rem;
+        font-weight: 600;
+        white-space: nowrap;
+        writing-mode: sideways-lr;
+        filter: drop-shadow(-1px -1px 1px #fff);
+        -webkit-text-stroke: 3px var(--background-color);
+        opacity: 0.2;
+        z-index: -1;
+      }
+      .banner-container::after {
+        position: absolute;
+        content: "STER";
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        color: transparent;
+        font-size: 15rem;
+        font-weight: 600;
+        white-space: nowrap;
+        writing-mode: sideways-rl;
+        filter: drop-shadow(-1px -1px 1px #fff);
+        -webkit-text-stroke: 3px var(--background-color);
+        opacity: 0.2;
+        z-index: -1;
+      }
+
+      .engine {
+        position: relative;
+        display: inline-block;
+        width: 40%;
+        max-width: 350px;
+        padding: 1rem 0;
+      }
+
+      .tooltip {
+        position: absolute;
+        display: flex;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        font-weight: 500;
+        z-index: 1;
+      }
+
+      .top {
+        top: 0;
+      }
+
+      .tooltip.left {
+        right: 100%;
+      }
+
+      .tooltip.right {
+        left: 100%;
+      }
+
+      .middle {
+        top: 50%;
+        align-items: center;
+      }
+
+      .tooltip.middle.left {
+        left: -50%;
+        transform: translateX(-50%);
+      }
+
+      .tooltip.middle.right {
+        right: -50%;
+        transform: translateX(50%);
+      }
+
+      .bottom {
+        bottom: 0;
+      }
+
+      .tooltip-text {
+        white-space: nowrap;
+      }
+
+      .tooltip.top .tooltip-text {
+        margin-bottom: auto;
+        transform: translateY(-50%);
+      }
+
+      .tooltip.bottom .tooltip-text {
+        margin-top: auto;
+        transform: translateY(50%);
+      }
+
+      .tooltip-lines {
+        position: relative;
+        display: inline-block;
+        width: 5rem;
+        height: 3rem;
+      }
+
+      .tooltip.left .tooltip-lines {
+        margin-left: 12px;
+      }
+
+      .tooltip.right .tooltip-lines {
+        margin-right: 12px;
+      }
+
+      .tooltip.top .tooltip-lines {
+        border-top: 2px solid var(--text-light);
+      }
+
+      .tooltip.middle .tooltip-lines {
+        width: 6rem;
+        height: 0;
+        border: 1px solid var(--text-light);
+      }
+
+      .tooltip.bottom .tooltip-lines {
+        border-bottom: 2px solid var(--text-light);
+      }
+
+      .tooltip-lines::after {
+        position: absolute;
+        content:  "";
+        width: 70%;
+        height: 100%;
+      }
+
+      .tooltip.top .tooltip-lines::after {
+        top: -2px;
+        border-top: 2px solid var(--text-light);
+      }
+
+      .tooltip.bottom .tooltip-lines::after {
+        bottom: -2px;
+        border-bottom: 2px solid var(--text-light);
+      }
+
+      .tooltip.left .tooltip-lines::after {
+        left: 100%;
+      }
+
+      .tooltip.right .tooltip-lines::after {
+        right: 100%;
+      }
+
+      .tooltip.top.left .tooltip-lines::after {
+        transform-origin: top left;
+        transform: rotate(45deg);
+      }
+
+      .tooltip.top.right .tooltip-lines::after {
+        transform-origin: top right;
+        transform: rotate(-45deg);
+      }
+
+      .tooltip.bottom.left .tooltip-lines::after {
+        transform-origin: bottom left;
+        transform: rotate(-45deg);
+      }
+
+      .tooltip.bottom.right .tooltip-lines::after {
+        transform-origin: bottom right;
+        transform: rotate(45deg);
+      }
+
+      @media (width < 960px) {
+        .banner-container::before, 
+        .banner-container::after {
+          font-size: 20vw;
+        }
+
+        .tooltip-text {
+          font-size: 1rem;
+        }
+
+        .tooltip.middle.right {
+          transform: translateX(30%);
+        }
+
+        .tooltip.middle.left {
+          transform: translateX(-30%);
+        }
+
+        .tooltip-lines {
+          width: 8vw;
+        }
+      }
+
+      @media (width < 680px) {
+        .tooltip-text {
+          font-size: 0.8rem;
+        }
+
+        .tooltip-lines {
+          width: 4vw;
+        }
+      }
+
+      @media (width < 480px) {
+        .tooltip-lines {
+          display: none;
+        }
+      }
+
+      .banner-container img {
+        opacity: 0.5;
+      }
+      
+      .footer-container {
+        display: grid;
+        gap: 4rem 2rem;
+      }
+      
+      .footer-col h4 {
+        margin-bottom: 2rem;
+        color: var(--white);
+        font-size: 1.25rem;
+        font-weight: 600;
+        font-family: var(--header-font);
+      }
+      
+      .footer-links {
+        display: grid;
+        gap: 1rem;
+      }
+      
+      .footer-links a {
+        color: var(--text-light);
+        font-size: 1rem;
+      }
+      
+      .footer-links a:hover {
+        color: var(--white);
+      }
+
+      .footer-bar {
+        padding-block: 1rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column-reverse;
+        border-top: 1px solid var(--text-light);
+      }
+      
+      .footer-bar p {
+        color: var(--text-light);
+        font-size: 1rem;
+        text-align: center;
+      }
+      
+      .footer-socials {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .footer-socials a {
+        color: var(--text-light);
+        font-size: 1.2rem;
+      }
+      
+      .footer-socials a:hover {
+        color: var(--white);
+      }
+
+      @media (width < 540px) {
+        .footer-links {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+      }
+      
+      @media (width > 540px) {      
+        .banner-container img {
+          opacity: 1;
+        }
+        .footer-container {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (width < 768px) {
+        .footer-container {
+          text-align: center;
+        }
+        .footer-col:nth-child(1) {
+          grid-column: 1 / -1;
+          max-width: 480px;
+          margin: auto;
+        }
+      }
+
+      @media (width < 768px) {
+        .choose-header .section-header, 
+        .choose-header p {
+          animation-delay: 0s;
+        }
+      }
+
+      @media (width > 768px) {
+        nav {
+          position: static;
+          max-width: var(--max-width);
+          margin-inline: auto;
+          padding: 2rem 1rem;
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .nav-header {
+          flex: 1;
+          padding: 0;
+          background-color: transparent;
+        }
+        .nav-logo a {
+          color: var(--primary-color);
+        }
+        .nav-menu-btn {
+          display: none;
+        }
+        .nav-links {
+          position: static;
+          width: fit-content;
+          padding: 0;
+          flex-direction: row;
+          background-color: transparent;
+          transform: none !important;
+        }
+        .nav-links a {
+          color: var(--text-light);
+        }
+        .nav-links a:hover {
+          color: var(--white);
+        }
+        .nav-btns {
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+          gap: 1rem;
+        }
+        .nav-btns .btn {
+          padding: 4px 10px;
+          font-size: 1.5rem;
+          color: var(--text-light);
+          border-radius: 50%;
+          transition: color 300ms;
+        }
+        .nav-btns .btn:hover {
+          color: var(--primary-color);
+        }
+        .header-container {
+          padding-top: 2rem;
+        }
+        .header-container::after {
+          height: 50%;
+        }
+        .about-container {
+          grid-template-columns: repeat(2, 1fr);
+          align-items: center;
+        }
+        .choose-header {
+          align-items: center;
+          grid-template-columns: 1fr auto 1fr;
+        }
+        .border {
+          height: 100%;
+          border-right: 1px solid var(--text-light);
+        }
+        .choose-header .section-header {
+          max-width: 320px;
+          margin-inline-start: auto;
+          text-align: right;
+        }
+        .choose-header p {
+          text-align: left;
+        }
+        .footer-container {
+          justify-content: space-between;
+          grid-template-columns: repeat(4, auto);
+        }
+        .footer-col:nth-child(1) {
+          max-width: 350px;
+        }
+        .footer-bar {
+          flex-direction: row;
+        }
+      }
+
+      @media (min-width: 660px) and (max-width: 1100px) {
+        .shop-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .shop-card:nth-child(odd) {
+          margin: 0 0 0 auto;
+        }
+        .shop-card:nth-child(even) {
+          margin: 0 0 auto 0;
+        }
+      }
+
+      @media (width > 1100px) {
+        .shop-container {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (width > 1024px) {
+        .nav-links {
+          gap: 3rem;
+        }
+        .shop-container {
+          gap: 1.5rem;
+        }
+        .shop-card {
+          padding: 2rem;
+        }
+      }
+      
+      .fade-in {
+        animation: fade-in 2s linear backwards;
+      }
+
+      .scale-down {
+        animation: scale-down 1s linear backwards;
+      }
+        
+      .fade-right {
+        animation: fade-right 1s linear backwards;
+      }
+    
+      .fade-up {
+        animation: fade-up 1s linear backwards;
+      }
+    
+      .fade-up-absolute {
+        animation: fade-up-absolute 1s linear backwards;
+      }
+
+      .fade-up-pseudo-element::before {
+        animation: fade-up-pseudo-element 1s linear backwards;
+      }
+
+      .fade-down-pseudo-element::after {
+        animation: fade-down-pseudo-element 1s linear backwards;
+      }
+
+      .fade-up-pseudo-element.paused::before {
+        animation-play-state: paused;
+      }
+
+      .fade-down-pseudo-element.paused::after {
+        animation-play-state: paused;
+      }
+    
+      .fade-down {
+        animation: fade-down 1s linear backwards;
+      }
+    
+      .delayed {
+        animation-delay: calc(0.2s * var(--delay));
+      }
+    
+      .paused {
+        animation-play-state: paused;
+      }
+    
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes scale-down {
+        0% {
+          transform: scaleY(0);
+        }
+      }
+    
+      @keyframes fade-right {
+        0% {
+          transform: translateX(-10%);
+          opacity: 0;
+        }
+      }
+    
+      @keyframes fade-up {
+        0% {
+          transform: translateY(10%);
+          opacity: 0;
+        }
+      }
+
+      @keyframes fade-up-absolute {
+        0% {
+          transform: translateY(1rem);
+          opacity: 0;
+        }
+      }
+
+      @keyframes fade-up-pseudo-element {
+        0% {
+          transform: translateY(-25%);
+          opacity: 0;
+        }
+      }
+
+      @keyframes fade-down-pseudo-element {
+        0% {
+          transform: translateY(-75%);
+          opacity: 0;
+        }
+      }
+    
+      @keyframes fade-down {
+        0% {
+          transform: translateY(-10%);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+
+      <header>
+        <nav>
+          <div class="nav-header">
+            <div class="nav-logo fade-in paused">
+              <a href="#home">STEED</a>
+            </div>
+            <div class="nav-menu-btn">
+              <button id="menu-btn">
+                menu
+                <i class="ri-menu-line"></i>
+              </button>
+            </div>
+          </div>
+          <ul class="nav-links" id="nav-links">
+            <li class="fade-right delayed paused" style="--delay: 0;">
+              <a href="#home">HOME</a>
+            </li>
+            <li class="fade-right delayed paused" style="--delay: 2;">
+              <a href="#about">ABOUT US</a>
+            </li>
+            <li class="fade-right delayed paused" style="--delay: 4;">
+              <a href="#service">SERVICE</a>
+            </li>
+            <li class="fade-right delayed paused" style="--delay: 6;">
+              <a href="#blog">BLOG</a>
+            </li>
+            <li class="fade-right delayed paused" style="--delay: 8;">
+              <a href="#contact">CONTACT</a>
+            </li>
+          </ul>
+          <div class="nav-btns">
+            <button class="btn fade-right delayed paused" style="--delay: 10">
+              <i class="ri-search-line"></i>
+            </button>
+            <button class="btn fade-right delayed paused" style="--delay: 12">
+              <i class="ri-shopping-bag-line"></i>
+            </button>
+          </div>
+        </nav>
+        <div class="section-container header-container">
+          <h1 class="fade-up-absolute paused">CONTINUES U2T STROM LEDAL FIGHTER</h1>
+          <p class="section-description fade-up-absolute delayed paused" style="--delay: 5">
+            Engineered for speed, precision, and endurance, this 
+            machine is built to dominate the roads.
+          </p>
+          <div class="header-link">
+            <a href="#" class="fade-up-absolute delayed paused" style="--delay: 10">
+              Learn More
+              <span>
+                <i class="fa fa-location-arrow"></i>
+              </span>
+            </a>
+          </div>
+          <img src="./images/header.png" alt="header" />
+        </div>
+      </header>
+      <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+        const menuBtnIcon = menuBtn.querySelector("i");
+        
+        menuBtn.addEventListener("click", (e) => {
+          navLinks.classList.toggle("open");
+        
+          menuBtnIcon.classList.toggle("ri-close-line");
+          menuBtnIcon.classList.toggle("ri-menu-line");
+        });
+        
+        navLinks.addEventListener("click", (e) => {
+          navLinks.classList.remove("open");
+          menuBtnIcon.classList.replace("ri-close-line", "ri-menu-line");
+        });
+      </script>
+  
+      <section class="shop">
+        <div class="section-container shop-container">
+          <div class="shop-card fade-up paused">
+            <p>HELMET</p>
+            <h4>MONZA MODULAR HELMET</h4>
+            <img src="./images/shop-1.png" alt="shop" />
+            <div>
+              <a href="#">
+                Learn More
+                <span>
+                  <i class="fa fa-location-arrow"></i>
+                </span>
+              </a>
+              <span>Exclusive</span>
+            </div>
+          </div>
+          <div class="shop-card fade-up delayed paused" style="--delay: 1">
+            <p>HELMET</p>
+            <h4>AXOR APEX - HEX-2</h4>
+            <img src="./images/shop-2.png" alt="shop" />
+            <div>
+              <a href="#">
+                Learn More
+                <span>
+                  <i class="fa fa-location-arrow"></i>
+                </span>
+              </a>
+              <span>Exclusive</span>
+            </div>
+          </div>
+          <div class="shop-card fade-up delayed paused" style="--delay: 2">
+            <p>HELMET</p>
+            <h4>BELL SRT MODULAR</h4>
+            <img src="./images/shop-3.png" alt="shop" />
+            <div>
+              <a href="#">
+                Learn More
+                <span>
+                  <i class="fa fa-location-arrow"></i>
+                </span>
+              </a>
+              <span>Exclusive</span>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <section class="about" id="about">
+        <div class="section-container about-container">
+          <div class="about-image">
+            <img src="./images/about.png" alt="about" />
+          </div>
+          <div class="about-content">
+            <h2 class="section-header fade-up-absolute paused">
+              Experience the Ultimate Fusion of Power and Precision with STEED
+            </h2>
+            <p class="section-description fade-up-absolute delayed paused" style="--delay: 2">
+              STEED isn't just a motorbike; it's an embodiment of speed,
+              innovation, and superior engineering.
+            </p>
+            <p class="section-description fade-up-absolute delayed paused" style="--delay: 6">
+              Designed for riders who demand adrenaline-fueled performance and
+              cutting-edge technology, STEED delivers an unmatched riding
+              experience with its aerodynamic design, powerful engine, and
+              advanced features. Whether you're conquering the open roads or
+              navigating city streets, STEED ensures every ride is a thrilling
+              adventure.
+            </p>
+            <div class="about-stats">
+              <div class="fade-up-absolute delayed paused" style="--delay: 5">
+                <h4>632</h4>
+                <p>STAFF</p>
+              </div>
+              <div class="fade-up-absolute delayed paused" style="--delay: 6">
+                <h4>957</h4>
+                <p>MOTOR</p>
+              </div>
+              <div class="fade-up-absolute delayed paused" style="--delay: 7">
+                <h4>75</h4>
+                <p>DEALER</p>
+              </div>
+              <div class="fade-up-absolute delayed paused" style="--delay: 8">
+                <h4>3.5M</h4>
+                <p>PROFIT</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <section class="choose">
+        <div class="section-container choose-container">
+          <div class="choose-header">
+            <h2 class="section-header fade-down delayed paused" style="--delay: 6">
+              CHOOSE YOUR FAVORITE MOTORCYCLE
+            </h2>
+            <span class="border scale-down paused"></span>
+            <p class="fade-up-absolute delayed paused" style="--delay: 6">
+              SUFFERED ALTERNATION
+            </p>
+          </div>
+          <div class="slider">
+            <div class="slider-track">
+              <div class="slide">
+                <div class="choose-card">
+                  <div class="choose-card-content">
+                    <p>ROADSTER</p>
+                    <a href="#">
+                      Learn More
+                      <span><i class="fa fa-location-arrow"></i></span>
+                    </a>
+                    <h4>R7</h4>
+                  </div>
+                  <img src="./images/choose-1.jpg" alt="choose" />
+                </div>
+              </div>
+              <div class="slide">
+                <div class="choose-card">
+                  <div class="choose-card-content">
+                    <p>CRUISER</p>
+                    <a href="#">
+                      Learn More
+                      <span><i class="fa fa-location-arrow"></i></span>
+                    </a>
+                    <h4>X1</h4>
+                  </div>
+                  <img src="./images/choose-2.jpg" alt="choose" />
+                </div>
+              </div>
+              <div class="slide">
+                <div class="choose-card">
+                  <div class="choose-card-content">
+                    <p>SPORTSTER</p>
+                    <a href="#">
+                      Learn More
+                      <span><i class="fa fa-location-arrow"></i></span>
+                    </a>
+                    <h4>S9</h4>
+                  </div>
+                  <img src="./images/choose-3.jpg" alt="choose" />
+                </div>
+              </div>
+              <div class="slide">
+                <div class="choose-card">
+                  <div class="choose-card-content">
+                    <p>ADVENTURE</p>
+                    <a href="#">
+                      Learn More
+                      <span><i class="fa fa-location-arrow"></i></span>
+                    </a>
+                    <h4>V4</h4>
+                  </div>
+                  <img src="./images/choose-4.jpg" alt="choose" />
+                </div>
+              </div>
+            </div>
+            <div class="control fade-up-absolute delayed paused" style="--delay: 6">
+              <button id="next">
+                next <i class="ri-arrow-left-double-line"></i>
+              </button>
+              <button id="prev">
+                prev <i class="ri-arrow-right-double-line"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script>
+        const prev = document.getElementById("prev");
+        const next = document.getElementById("next");
+        const track = document.querySelector(".slider-track");
+  
+        next.addEventListener("click", () => {
+          const slideWidth = document.querySelector(".slide").offsetWidth;
+          track.scrollBy(slideWidth, 0);
+        })
+  
+        prev.addEventListener("click", () => {
+          const slideWidth = document.querySelector(".slide").offsetWidth * (-1);
+          track.scrollBy(slideWidth, 0);
+        })
+      </script>
+  
+      <section class="banner">
+        <div class="section-container banner-container fade-down-pseudo-element fade-up-pseudo-element paused">
+          <div class="engine">
+          <p class="tooltip left top fade-in delayed paused" style="--delay: 0">
+            <span class="tooltip-text">SUSPENSION</span>
+            <span class="tooltip-lines"></span>
+          </p>
+          <p class="tooltip left middle fade-in delayed paused" style="--delay: 2">
+            <span class="tooltip-text">BRAKES</span>
+            <span class="tooltip-lines"></span>
+          </p>
+          <p class="tooltip left bottom fade-in delayed paused" style="--delay: 4">
+            <span class="tooltip-text">TRANSMISSION</span>
+            <span class="tooltip-lines"></span>
+          </p>
+          <p class="tooltip right top fade-in delayed paused" style="--delay: 6">
+            <span class="tooltip-lines"></span>
+            <span class="tooltip-text">FUEL INJECTION</span>
+          </p>
+          <p class="tooltip right middle fade-in delayed paused" style="--delay: 8">
+            <span class="tooltip-lines"></span>
+            <span class="tooltip-text">TRACTION</span>
+          </p>
+          <p class="tooltip right bottom fade-in delayed paused" style="--delay: 10">
+            <span class="tooltip-lines"></span>
+            <span class="tooltip-text">RELIABILITY</span>
+          </p>
+          <img src="./images/banner.png" alt="banner" />
+          </div>
+        </div>
+      </section>
+      
+      <footer>
+        <div class="section-container footer-container">
+          <div class="footer-col fade-up-absolute delayed paused" style="--delay: 0">
+            <h4>ABOUT</h4>
+            <p class="section-description">
+              Experience the unstoppable power of cutting-edge design and
+              high-performance engineering. Ride with confidence and unleash the
+              thrill of adventure like never before!
+            </p>
+          </div>
+          <div class="footer-col fade-up-absolute delayed paused" style="--delay: 1">
+            <h4>SERVICES</h4>
+            <ul class="footer-links">
+              <li><a href="#">Engine Clearing</a></li>
+              <li><a href="#">Full Services</a></li>
+              <li><a href="#">Test Ride Booking</a></li>
+              <li><a href="#">Financing Options</a></li>
+            </ul>
+          </div>
+          <div class="footer-col fade-up-absolute delayed paused" style="--delay: 2">
+            <h4>OFFICE</h4>
+            <ul class="footer-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Dealer Locator</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col fade-up-absolute delayed paused" style="--delay: 3">
+            <h4>MODEL</h4>
+            <ul class="footer-links">
+              <li><a href="#">STEED X1</a></li>
+              <li><a href="#">STEED Raptor</a></li>
+              <li><a href="#">STEED TurboMax</a></li>
+              <li><a href="#">STEED Cruiser</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="section-container footer-bar">
+          <p class="fade-down paused">Copyright © 2025 Company. All rights reserved.</p>
+          <ul class="footer-socials">
+            <li class="fade-right delayed paused" style="--delay: 0">
+              <a href="#">
+                <i class="ri-facebook-fill"></i>
+              </a>
+            </li>
+            <li class="fade-right delayed paused" style="--delay: 2">
+              <a href="#">
+                <i class="ri-twitter-fill"></i>
+              </a>
+            </li>
+            <li class="fade-right delayed paused" style="--delay: 4">
+              <a href="#">
+                <i class="ri-instagram-line"></i>
+              </a>
+            </li>
+            <li class="fade-right delayed paused" style="--delay: 6">
+              <a href="#">
+                <i class="ri-linkedin-fill"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+  
+      <script>
+        const observer = new IntersectionObserver(animate);
+  
+        const elements = document.querySelectorAll(".paused");
+  
+        elements.forEach(element => {
+          observer.observe(element);
+        })
+  
+        function animate(entries) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove("paused");
+            }
+          });
+        }
+      </script>
+  
+    </div>
+  </body>
+</html>
