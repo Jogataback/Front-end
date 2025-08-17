@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Porsche</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap");
+      @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Courgette&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Josefin+Sans:wght@300;400;600&family=Limelight&family=Lobster&family=Montserrat:wght@300;400;600&family=Oleo+Script+Swash+Caps:wght@400;700&family=Poppins:wght@300;400;700;800&family=Raleway:ital,wght@0,400;1,300;1,600&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&family=Kaushan+Script&family=Playfair+Display&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Brawler:wght@400;700&family=Croissant+One&family=Ephesis&family=Gloock&family=Hurricane&family=Imbue:opsz,wght@10..100,100..900&family=Modak&family=Montez&family=Prosto+One&family=Rye&family=Shojumaru&family=Young+Serif&family=ZCOOL+XiaoWei&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Lora:ital@0;1&family=Poppins:wght@400;500;600&display=swap");
+    
+      :root {
+        --primary-color: #8263a3;
+        --text-dark: #232637;
+        --white: #ffffff;
+        --max-width: 1200px;
+      }
+    
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    
+      ul {
+        list-style: none;
+      }
+    
+      button {
+        font-family: inherit;
+        border: 0px solid transparent;
+        outline: 1px solid transparent;
+        background-color: transparent;
+        cursor: pointer;
+      }
+    
+      button:focus-visible,
+      a:focus-visible {
+        outline: 1px solid #999;
+      }
+    
+      img {
+        display: block;
+        width: 100%;
+      }
+    
+      a {
+        display: inline-block;
+        text-decoration: none;
+      }
+    
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+    
+      body {
+        font-family: "Noto Sans JP", sans-serif;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        background-color: #dbdce0;
+      }
+    
+      .btn {
+        padding: 1rem 2rem;
+        font-weight: 600;
+      }
+    
+      .page {
+        position: relative;
+        width: fit-content;
+        min-width: 100%;
+        min-height: 100vh;
+        padding: 3rem 2%;
+        display: flex;
+        overflow: hidden;
+      }
+    
+      .page::after {
+        position: absolute;
+        top: 0;
+        /* right: 0; */
+        right: -50%;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: var(--text-dark);
+        /* animation: animated-bg 1s ease-in-out forwards; */
+        animation: animated-bg 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        z-index: -1;
+      }
+    
+      .page::before {
+        position: fixed;
+        content: "0";
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        font-size: 70rem;
+        font-weight: 200;
+        color: var(--white);
+        z-index: -1;
+        opacity: 0.5;
+      }
+    
+      @keyframes animated-bg {
+        0% {
+          transform: translateX(100%);
+        }
+      }
+    
+      .container {
+        position: relative;
+        max-width: var(--max-width);
+        margin: auto;
+        border-radius: 12px;
+        box-shadow: 3px 3px 3px #0005,
+          -3px -3px 3px #fff5;
+        isolation: isolate;
+      }
+    
+      nav {
+        position: relative;
+        padding: 1rem 2%;
+        z-index: 1;
+      }
+    
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+    
+      .nav-links a {
+        font-weight: 500;
+      }
+    
+      .nav-links .logo {
+        font-size: 1.2rem;
+        font-weight: 800;
+      }
+    
+      .subnav {
+        max-width: 50%;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+    
+      .subnav a {
+        padding: 0.5em 1em;
+        transition: color 400ms;
+      }
+    
+      .subnav.left a {
+        color: var(--text-dark);
+      }
+    
+      .subnav.right a {
+        color: var(--white);
+      }
+    
+      .nav-links a:hover {
+        color: var(--primary-color);
+      }
+    
+      main {
+        padding: 3rem 0;
+        display: grid;
+        align-items: center;
+        grid-template-columns: auto auto 1fr auto auto;
+        grid-template-rows: auto 1fr auto;
+      }
+    
+      .main-img {
+        grid-column: 3/4;
+        grid-row: 1/-1;
+        position: relative;
+        padding-bottom: 2rem;
+        display: grid;
+      }
+    
+      .letter-s {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        display: block;
+        font-size: 40rem;
+        line-height: 0.9;
+        font-weight: 900;
+        text-align: center;
+        pointer-events: none;
+        color: transparent;
+        -webkit-text-stroke: 4px var(--primary-color);
+        filter: drop-shadow(2px 2px 2px #000);
+        animation: fade-in 1s ease-in-out backwards;
+      }
+    
+      .main-img img {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        max-width: 200px;
+        margin: auto;
+        filter: drop-shadow(0 0 50px rgba(0, 0, 0, 0.8));
+        animation: fade-in 1s ease-in-out backwards;
+        animation-delay: 1s;
+        z-index: 2;
+      }
+    
+      .title {
+        font-size: 5rem;
+        color: var(--white);
+        letter-spacing: 25px;
+        z-index: 1;
+      }
+    
+      .title-left {
+        position: relative;
+        grid-column: 2/3;
+        grid-row: 2/3;
+        transform: translateX(5rem);
+        animation: fade-text-left 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
+        animation-delay: 2s;
+      }
+    
+      .title-left span {
+        position: absolute;
+        width: 0;
+        font-size: 0px;
+      }
+    
+      .title-right {
+        grid-column: 4/5;
+        grid-row: 2/3;
+        transform: translateX(-5rem);
+        animation: fade-text-right 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
+        animation-delay: 2s;
+      }
+    
+      .explore-btn {
+        grid-column: 3/4;
+        grid-row: 3/4;
+        margin: auto;
+        color: var(--text-dark);
+        border: 1px solid var(--white);
+        background-color: var(--white);
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+        animation: fade-in 1s ease-in-out backwards;
+        animation-delay: 2.5s;
+        transition: color 300ms,
+          background-color 300ms;
+        z-index: 2;
+      }
+    
+      .explore-btn:hover {
+        color: var(--white);
+        background-color: var(--text-dark);
+      }
+    
+      .print-btn {
+        grid-column: 5/6;
+        grid-row: 2/3;
+        transform: rotate(90deg);
+        color: var(--white);
+        background-color: transparent;
+        border: 1px solid var(--white);
+        animation: fade-in 1s ease-in-out backwards;
+        animation-delay: 5s;
+        transition: color 300ms,
+          background-color 300ms;
+      }
+    
+      .print-btn:hover {
+        color: var(--primary-color);
+        background-color: var(--white);
+      }
+    
+      .catalog-btn {
+        margin-bottom: auto;
+        transform: translateY(50%) rotate(-90deg);
+        color: var(--text-dark);
+        border: 1px solid var(--text-dark);
+        background-color: transparent;
+        animation: fade-in 300ms ease-in-out backwards;
+        animation-delay: 7.5s;
+        transition: color 300ms,
+          background-color 300ms;
+      }
+    
+      .catalog-btn:hover {
+        color: var(--white);
+        background-color: var(--text-dark);
+      }
+    
+      .feature {
+        position: relative;
+        margin-bottom: auto;
+        display: inline-flex;
+        gap: 1rem;
+        align-items: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        animation: fade-in 300ms ease-in-out backwards;
+      }
+    
+      .feature-1,
+      .feature-3 {
+        margin-left: auto;
+      }
+    
+      .feature-1::after,
+      .feature-3::after {
+        display: inline-block;
+        top: 50%;
+        content: "";
+        width: 100px;
+        height: 1px;
+      }
+    
+      .feature-2,
+      .feature-4 {
+        margin-right: auto;
+      }
+    
+      .feature-2::before,
+      .feature-4::before {
+        display: inline-block;
+        top: 50%;
+        content: "";
+        width: 100px;
+        height: 1px;
+      }
+    
+      .feature-1 {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        color: var(--text-dark);
+        animation-delay: 3s;
+      }
+    
+      .feature-2 {
+        grid-column: 4/5;
+        grid-row: 2/3;
+        color: var(--white);
+        animation-delay: 3.5s;
+      }
+    
+      .feature-3 {
+        grid-column: 2/3;
+        grid-row: 3/4;
+        color: var(--text-dark);
+        animation-delay: 4s;
+      }
+    
+      .feature-4 {
+        grid-column: 4/5;
+        grid-row: 3/4;
+        color: var(--white);
+        animation-delay: 4.5s;
+      }
+    
+      .feature-1::after,
+      .feature-3::after {
+        right: 0;
+        background-color: var(--text-dark);
+      }
+    
+      .feature-2::before,
+      .feature-4::before {
+        left: 0;
+        background-color: var(--white);
+      }
+    
+      .footer {
+        padding: 1rem 2%;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+    
+      .footer p {
+        color: var(--text-dark);
+        font-size: 0.9rem;
+        animation: fade-in 300ms ease-in-out backwards;
+        animation-delay: 5.5s;
+      }
+    
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+    
+      .footer-links li {
+        animation: fade-in 300ms ease-in-out backwards;
+      }
+    
+      .footer-links li:nth-child(1) {
+        animation-delay: 6s;
+      }
+    
+      .footer-links li:nth-child(2) {
+        animation-delay: 6.5s;
+      }
+    
+      .footer-links li:nth-child(3) {
+        animation-delay: 7s;
+      }
+    
+      .footer-links a {
+        color: var(--white);
+      }
+    
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+    
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+        }
+      }
+    
+      @keyframes fade-left {
+        0% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+      }
+    
+      @keyframes fade-right {
+        0% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+      }
+    
+      @keyframes fade-text-right {
+        0% {
+          opacity: 0;
+          transform: translateX(-10rem);
+        }
+      }
+    
+      @keyframes fade-text-left {
+        0% {
+          opacity: 0;
+          transform: translateX(10rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="container">
+        <nav>
+          <ul class="nav-links" role="list">
+            <div class="subnav left">
+              <li><a href="#" class="logo">Diesel</a></li>
+              <li><a href="#">Store</a></li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">Collection</a></li>
+            </div>
+            <div class="subnav right">
+              <li><a href="#">Cart</a></li>
+              <li><a href="#">Login/Register</a></li>
+              <li><a href="#">Profile</a></li>
+            </div>
+          </ul>
+        </nav>
+        <main>
+          <button class="btn catalog-btn">CATALOG</button>
+          <h4 class="title title-left">
+            POR <span>CHE</span>
+          </h4>
+          <div class="main-img">
+            <span class="letter-s">S</span>
+            <img src="./images//watch.png" alt="Diesel Watch" />
+          </div>
+          <h4 class="title title-right" aria-hidden="true">CHE</h4>
+          <h5 class="feature feature-1">Diesel</h5>
+          <h5 class="feature feature-2">Watches</h5>
+          <h5 class="feature feature-3">Tough</h5>
+          <h5 class="feature feature-4">Modern</h5>
+          <button class="btn explore-btn">EXPLORE MORE</button>
+          <button class="btn print-btn">PRINT</button>
+        </main>
+        <footer class="footer">
+          <p>Copyright © 2024 Porsche. All rights reserved.</p>
+          <div class="footer-links">
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+  </body>
+</html>
